@@ -22,9 +22,9 @@ var _ = require('lodash'),
 var app,
   agent,
   user1,
-  admin1,
+  user1,
   userFromSeedConfig,
-  adminFromSeedConfig,
+  userFromSeedConfig,
   originalLogConfig;
 
 describe('Configuration Tests:', function () {
@@ -33,17 +33,17 @@ describe('Configuration Tests:', function () {
     var _seedConfig = _.clone(config.seedDB, true);
     var articleSeedConfig;
     var userSeedConfig;
-    var _admin;
+    var _user;
     var _user;
     var _article;
 
     before(function (done) {
-      _admin = {
-        username: 'test-seed-admin',
-        email: 'test-admin@localhost.com',
+      _user = {
+        username: 'test-seed-user',
+        email: 'test-user@localhost.com',
         firstName: 'Admin',
         lastName: 'Test',
-        roles: ['admin', 'user']
+        roles: ['user']
       };
 
       _user = {
@@ -165,15 +165,15 @@ describe('Configuration Tests:', function () {
     it('should overwrite existing users by default', function (done) {
       userSeedConfig.docs.should.be.instanceof(Array).and.have.lengthOf(2);
 
-      var admin = new User(userSeedConfig.docs[0].data);
-      admin.email = 'temp-admin@localhost.com';
-      admin.provider = 'local';
+      var user = new User(userSeedConfig.docs[0].data);
+      user.email = 'temp-user@localhost.com';
+      user.provider = 'local';
 
       var user = new User(userSeedConfig.docs[1].data);
       user.email = 'temp-user@localhost.com';
       user.provider = 'local';
 
-      admin.save()
+      user.save()
         .then(function () {
           return user.save();
         })
@@ -193,7 +193,7 @@ describe('Configuration Tests:', function () {
           // the existing users before seeding again.
           users.should.be.instanceof(Array).and.have.lengthOf(2);
 
-          return User.find({ username: admin.username }).exec();
+          return User.find({ username: user.username }).exec();
         })
         .then(function (users) {
           users.should.be.instanceof(Array).and.have.lengthOf(1);
@@ -242,13 +242,13 @@ describe('Configuration Tests:', function () {
         .catch(done);
     });
 
-    it('should seed single article with user set to custom seeded admin user', function (done) {
+    it('should seed single article with user set to custom seeded user user', function (done) {
       seed
         .start({
           collections: [{
             model: 'User',
             docs: [{
-              data: _admin
+              data: _user
             }]
           }, {
             model: 'Article',
@@ -279,13 +279,13 @@ describe('Configuration Tests:', function () {
           should.exist(newArticle.user);
           should.exist(newArticle.user._id);
 
-          _admin.username.should.equal(newArticle.user.username);
-          _admin.email.should.equal(newArticle.user.email);
-          _admin.firstName.should.equal(newArticle.user.firstName);
-          _admin.lastName.should.equal(newArticle.user.lastName);
+          _user.username.should.equal(newArticle.user.username);
+          _user.email.should.equal(newArticle.user.email);
+          _user.firstName.should.equal(newArticle.user.firstName);
+          _user.lastName.should.equal(newArticle.user.lastName);
 
           should.exist(newArticle.user.roles);
-          newArticle.user.roles.indexOf('admin').should.equal(_admin.roles.indexOf('admin'));
+          newArticle.user.roles.indexOf('user').should.equal(_user.roles.indexOf('user'));
 
           return done();
         })
@@ -304,7 +304,7 @@ describe('Configuration Tests:', function () {
           }, {
             model: 'User',
             docs: [{
-              data: _admin
+              data: _user
             }]
           }]
         })
@@ -333,13 +333,13 @@ describe('Configuration Tests:', function () {
         .catch(done);
     });
 
-    it('should seed admin and user accounts with custom options', function (done) {
+    it('should seed user and user accounts with custom options', function (done) {
       seed
         .start({
           collections: [{
             model: 'User',
             docs: [{
-              data: _admin
+              data: _user
             }, {
               data: _user
             }]
@@ -350,14 +350,14 @@ describe('Configuration Tests:', function () {
         })
         .then(function (users) {
           users.should.be.instanceof(Array).and.have.lengthOf(2);
-          return User.find({ username: _admin.username }).exec();
+          return User.find({ username: _user.username }).exec();
         })
         .then(function (users) {
           users.should.be.instanceof(Array).and.have.lengthOf(1);
 
           var newAdmin = users.pop();
-          _admin.username.should.equal(newAdmin.username);
-          _admin.email.should.equal(newAdmin.email);
+          _user.username.should.equal(newAdmin.username);
+          _user.email.should.equal(newAdmin.email);
 
           return User.find({ username: _user.username }).exec();
         })

@@ -61,7 +61,7 @@ describe('Article CRUD tests', function () {
       .catch(done);
   });
 
-  it('should not be able to save an article if logged in without the "admin" role', function (done) {
+  it('should not be able to save an article if logged in without the "user" role', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -92,7 +92,7 @@ describe('Article CRUD tests', function () {
       });
   });
 
-  it('should not be able to update an article if signed in without the "admin" role', function (done) {
+  it('should not be able to update an article if signed in without the "user" role', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -172,7 +172,7 @@ describe('Article CRUD tests', function () {
       });
   });
 
-  it('should not be able to delete an article if signed in without the "admin" role', function (done) {
+  it('should not be able to delete an article if signed in without the "user" role', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -231,7 +231,7 @@ describe('Article CRUD tests', function () {
       username: _creds.usernameOrEmail,
       password: _creds.password,
       provider: 'local',
-      roles: ['admin']
+      roles: ['user']
     });
 
     _orphan.save(function (err, orphan) {
@@ -340,7 +340,7 @@ describe('Article CRUD tests', function () {
       username: _creds.usernameOrEmail,
       password: _creds.password,
       provider: 'local',
-      roles: ['admin', 'user']
+      roles: ['user']
     });
 
     _articleOwner.save(function (err, _user) {

@@ -3,15 +3,15 @@
 
   // Configuring the Articles Admin module
   angular
-    .module('articles.admin')
+    .module('articles.user')
     .run(menuConfig);
 
   menuConfig.$inject = ['menuService'];
 
   function menuConfig(Menus) {
-    Menus.addSubMenuItem('topbar', 'admin', {
+    Menus.addSubMenuItem('topbar', 'user', {
       title: 'Manage Articles',
-      state: 'admin.articles.list'
+      state: 'user.articles.list'
     });
   }
 }());

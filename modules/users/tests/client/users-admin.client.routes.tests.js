@@ -23,7 +23,7 @@
       describe('Main Route', function () {
         var mainstate;
         beforeEach(inject(function ($state) {
-          mainstate = $state.get('admin.users');
+          mainstate = $state.get('user.users');
         }));
 
         it('Should have the correct URL', function () {
@@ -35,14 +35,14 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(mainstate.templateUrl).toBe('/modules/users/client/views/admin/list-users.client.view.html');
+          expect(mainstate.templateUrl).toBe('/modules/users/client/views/user/list-users.client.view.html');
         });
       });
 
       describe('View Route', function () {
         var viewstate;
         beforeEach(inject(function ($state) {
-          viewstate = $state.get('admin.user');
+          viewstate = $state.get('user.user');
         }));
 
         it('Should have the correct URL', function () {
@@ -54,14 +54,14 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(viewstate.templateUrl).toBe('/modules/users/client/views/admin/view-user.client.view.html');
+          expect(viewstate.templateUrl).toBe('/modules/users/client/views/user/view-user.client.view.html');
         });
       });
 
       describe('Edit Route', function () {
         var editstate;
         beforeEach(inject(function ($state) {
-          editstate = $state.get('admin.user-edit');
+          editstate = $state.get('user.user-edit');
         }));
 
         it('Should have the correct URL', function () {
@@ -73,7 +73,7 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(editstate.templateUrl).toBe('/modules/users/client/views/admin/edit-user.client.view.html');
+          expect(editstate.templateUrl).toBe('/modules/users/client/views/user/edit-user.client.view.html');
         });
       });
 
@@ -81,28 +81,28 @@
         beforeEach(inject(function ($state, $rootScope, _Authentication_, _$httpBackend_) {
           Authentication.user = {
             name: 'user',
-            roles: ['admin']
+            roles: ['user']
           };
 
           $httpBackend = _$httpBackend_;
 
           // Ignore parent template gets on state transition
-          $httpBackend.whenGET('/modules/users/client/views/admin/list-users.client.view.html').respond(200);
+          $httpBackend.whenGET('/modules/users/client/views/user/list-users.client.view.html').respond(200);
           $httpBackend.whenGET('/modules/core/client/views/home.client.view.html').respond(200);
 
-          $state.go('admin.users');
+          $state.go('user.users');
           $rootScope.$digest();
         }));
 
         it('Should remove trailing slash', inject(function ($state, $location, $rootScope, $templateCache) {
-          $templateCache.put('/modules/users/client/views/admin/list-users.client.view.html', '');
+          $templateCache.put('/modules/users/client/views/user/list-users.client.view.html', '');
           $templateCache.put('/modules/core/client/views/home.client.view.html', '');
 
-          $location.path('admin/users/');
+          $location.path('user/users/');
           $rootScope.$digest();
 
-          expect($location.path()).toBe('/admin/users');
-          expect($state.current.templateUrl).toBe('/modules/users/client/views/admin/list-users.client.view.html');
+          expect($location.path()).toBe('/user/users');
+          expect($state.current.templateUrl).toBe('/modules/users/client/views/user/list-users.client.view.html');
         }));
       });
 

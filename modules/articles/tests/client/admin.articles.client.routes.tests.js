@@ -22,7 +22,7 @@
       describe('Main Route', function () {
         var mainstate;
         beforeEach(inject(function ($state) {
-          mainstate = $state.get('admin.articles');
+          mainstate = $state.get('user.articles');
         }));
 
         it('Should have the correct URL', function () {
@@ -41,7 +41,7 @@
       describe('List Route', function () {
         var liststate;
         beforeEach(inject(function ($state) {
-          liststate = $state.get('admin.articles.list');
+          liststate = $state.get('user.articles.list');
         }));
 
         it('Should have the correct URL', function () {
@@ -53,7 +53,7 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(liststate.templateUrl).toBe('/modules/articles/client/views/admin/list-articles.client.view.html');
+          expect(liststate.templateUrl).toBe('/modules/articles/client/views/user/list-articles.client.view.html');
         });
       });
 
@@ -63,8 +63,8 @@
           mockArticle;
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
-          createstate = $state.get('admin.articles.create');
-          $templateCache.put('/modules/articles/client/views/admin/form-article.client.view.html', '');
+          createstate = $state.get('user.articles.create');
+          $templateCache.put('/modules/articles/client/views/user/form-article.client.view.html', '');
 
           // Create mock article
           mockArticle = new ArticlesService();
@@ -86,7 +86,7 @@
         });
 
         it('should respond to URL', inject(function ($state) {
-          expect($state.href(createstate)).toEqual('/admin/articles/create');
+          expect($state.href(createstate)).toEqual('/user/articles/create');
         }));
 
         it('should attach an article to the controller scope', function () {
@@ -99,7 +99,7 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(createstate.templateUrl).toBe('/modules/articles/client/views/admin/form-article.client.view.html');
+          expect(createstate.templateUrl).toBe('/modules/articles/client/views/user/form-article.client.view.html');
         });
       });
 
@@ -109,8 +109,8 @@
           mockArticle;
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
-          editstate = $state.get('admin.articles.edit');
-          $templateCache.put('/modules/articles/client/views/admin/form-article.client.view.html', '');
+          editstate = $state.get('user.articles.edit');
+          $templateCache.put('/modules/articles/client/views/user/form-article.client.view.html', '');
 
           // Create mock article
           mockArticle = new ArticlesService({
@@ -138,7 +138,7 @@
         it('should respond to URL', inject(function ($state) {
           expect($state.href(editstate, {
             articleId: 1
-          })).toEqual('/admin/articles/1/edit');
+          })).toEqual('/user/articles/1/edit');
         }));
 
         it('should attach an article to the controller scope', function () {
@@ -150,7 +150,7 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(editstate.templateUrl).toBe('/modules/articles/client/views/admin/form-article.client.view.html');
+          expect(editstate.templateUrl).toBe('/modules/articles/client/views/user/form-article.client.view.html');
         });
 
         xit('Should go to unauthorized route', function () {

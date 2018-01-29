@@ -2,46 +2,46 @@
   'use strict';
 
   angular
-    .module('articles.admin.routes')
+    .module('articles.user.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
 
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('admin.articles', {
+      .state('user.articles', {
         abstract: true,
         url: '/articles',
         template: '<ui-view/>'
       })
-      .state('admin.articles.list', {
+      .state('user.articles.list', {
         url: '',
-        templateUrl: '/modules/articles/client/views/admin/list-articles.client.view.html',
+        templateUrl: '/modules/articles/client/views/user/list-articles.client.view.html',
         controller: 'ArticlesAdminListController',
         controllerAs: 'vm',
         data: {
-          roles: ['admin']
+          roles: ['user']
         }
       })
-      .state('admin.articles.create', {
+      .state('user.articles.create', {
         url: '/create',
-        templateUrl: '/modules/articles/client/views/admin/form-article.client.view.html',
+        templateUrl: '/modules/articles/client/views/user/form-article.client.view.html',
         controller: 'ArticlesAdminController',
         controllerAs: 'vm',
         data: {
-          roles: ['admin']
+          roles: ['user']
         },
         resolve: {
           articleResolve: newArticle
         }
       })
-      .state('admin.articles.edit', {
+      .state('user.articles.edit', {
         url: '/:articleId/edit',
-        templateUrl: '/modules/articles/client/views/admin/form-article.client.view.html',
+        templateUrl: '/modules/articles/client/views/user/form-article.client.view.html',
         controller: 'ArticlesAdminController',
         controllerAs: 'vm',
         data: {
-          roles: ['admin'],
+          roles: ['user'],
           pageTitle: '{{ articleResolve.title }}'
         },
         resolve: {

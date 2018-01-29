@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('users.admin')
+    .module('users.user')
     .controller('UserController', UserController);
 
   UserController.$inject = ['$scope', '$state', '$window', 'Authentication', 'userResolve', 'Notification'];
@@ -25,7 +25,7 @@
           Notification.success('User deleted successfully!');
         } else {
           vm.user.$remove(function () {
-            $state.go('admin.users');
+            $state.go('user.users');
             Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> User deleted successfully!' });
           });
         }
@@ -42,7 +42,7 @@
       var user = vm.user;
 
       user.$update(function () {
-        $state.go('admin.user', {
+        $state.go('user.user', {
           userId: user._id
         });
         Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> User saved successfully!' });

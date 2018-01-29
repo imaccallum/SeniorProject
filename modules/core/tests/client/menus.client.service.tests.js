@@ -17,8 +17,8 @@
       expect(menuService.menus.topbar).toBeDefined();
     });
 
-    it('should have default roles to user and admin', function () {
-      expect(menuService.defaultRoles).toEqual(['user', 'admin']);
+    it('should have default roles to user and user', function () {
+      expect(menuService.defaultRoles).toEqual(['user']);
     });
 
     describe('addMenu', function () {

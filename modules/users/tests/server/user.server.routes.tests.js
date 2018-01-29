@@ -18,7 +18,7 @@ var app,
   credentialsEmail,
   user,
   _user,
-  admin;
+  user;
 
 /**
  * User routes tests
@@ -159,7 +159,7 @@ describe('User CRUD tests', function () {
       });
   });
 
-  it('should not be able to retrieve a list of users if not admin', function (done) {
+  it('should not be able to retrieve a list of users if not user', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -182,8 +182,8 @@ describe('User CRUD tests', function () {
       });
   });
 
-  it('should be able to retrieve a list of users if admin', function (done) {
-    user.roles = ['user', 'admin'];
+  it('should be able to retrieve a list of users if user', function (done) {
+    user.roles = ['user'];
 
     user.save(function (err) {
       should.not.exist(err);
@@ -213,8 +213,8 @@ describe('User CRUD tests', function () {
     });
   });
 
-  it('should be able to get a single user details if admin', function (done) {
-    user.roles = ['user', 'admin'];
+  it('should be able to get a single user details if user', function (done) {
+    user.roles = ['user'];
 
     user.save(function (err) {
       should.not.exist(err);
@@ -245,8 +245,8 @@ describe('User CRUD tests', function () {
     });
   });
 
-  it('should be able to update a single user details if admin', function (done) {
-    user.roles = ['user', 'admin'];
+  it('should be able to update a single user details if user', function (done) {
+    user.roles = ['user'];
 
     user.save(function (err) {
       should.not.exist(err);
@@ -262,9 +262,9 @@ describe('User CRUD tests', function () {
           // Get single user information from the database
 
           var userUpdate = {
-            firstName: 'admin_update_first',
-            lastName: 'admin_update_last',
-            roles: ['admin']
+            firstName: 'user_update_first',
+            lastName: 'user_update_last',
+            roles: ['user']
           };
 
           agent.put('/api/users/' + user._id)
@@ -276,8 +276,8 @@ describe('User CRUD tests', function () {
               }
 
               userInfoRes.body.should.be.instanceof(Object);
-              userInfoRes.body.firstName.should.be.equal('admin_update_first');
-              userInfoRes.body.lastName.should.be.equal('admin_update_last');
+              userInfoRes.body.firstName.should.be.equal('user_update_first');
+              userInfoRes.body.lastName.should.be.equal('user_update_last');
               userInfoRes.body.roles.should.be.instanceof(Array).and.have.lengthOf(1);
               userInfoRes.body._id.should.be.equal(String(user._id));
 
@@ -288,8 +288,8 @@ describe('User CRUD tests', function () {
     });
   });
 
-  it('should be able to delete a single user if admin', function (done) {
-    user.roles = ['user', 'admin'];
+  it('should be able to delete a single user if user', function (done) {
+    user.roles = ['user'];
 
     user.save(function (err) {
       should.not.exist(err);
@@ -752,7 +752,7 @@ describe('User CRUD tests', function () {
     });
   });
 
-  it('should not be able to update own user details and add roles if not admin', function (done) {
+  it('should not be able to update own user details and add roles if not user', function (done) {
     user.roles = ['user'];
 
     user.save(function (err) {
@@ -769,7 +769,7 @@ describe('User CRUD tests', function () {
           var userUpdate = {
             firstName: 'user_update_first',
             lastName: 'user_update_last',
-            roles: ['user', 'admin']
+            roles: ['user']
           };
 
           agent.put('/api/users')

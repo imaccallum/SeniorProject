@@ -67,14 +67,14 @@ function seed(doc, options) {
 
         User
           .findOne({
-            roles: { $in: ['admin'] }
+            roles: { $in: ['user'] }
           })
-          .exec(function (err, admin) {
+          .exec(function (err, user) {
             if (err) {
               return reject(err);
             }
 
-            doc.user = admin;
+            doc.user = user;
 
             return resolve();
           });

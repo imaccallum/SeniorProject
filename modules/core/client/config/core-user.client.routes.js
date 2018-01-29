@@ -2,19 +2,19 @@
   'use strict';
 
   angular
-    .module('core.admin.routes')
+    .module('core.user.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
 
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('admin', {
+      .state('user', {
         abstract: true,
-        url: '/admin',
+        url: '/user',
         template: '<ui-view/>',
         data: {
-          roles: ['admin']
+          roles: ['user']
         }
       });
   }

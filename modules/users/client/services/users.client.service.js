@@ -72,7 +72,7 @@
 
   // TODO this should be Users service
   angular
-    .module('users.admin.services')
+    .module('users.user.services')
     .factory('AdminService', AdminService);
 
   AdminService.$inject = ['$resource'];

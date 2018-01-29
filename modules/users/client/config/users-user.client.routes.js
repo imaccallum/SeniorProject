@@ -3,22 +3,22 @@
 
   // Setting up route
   angular
-    .module('users.admin.routes')
+    .module('users.user.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
 
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('admin.users', {
+      .state('user.users', {
         url: '/users',
-        templateUrl: '/modules/users/client/views/admin/list-users.client.view.html',
+        templateUrl: '/modules/users/client/views/user/list-users.client.view.html',
         controller: 'UserListController',
         controllerAs: 'vm'
       })
-      .state('admin.user', {
+      .state('user.user', {
         url: '/users/:userId',
-        templateUrl: '/modules/users/client/views/admin/view-user.client.view.html',
+        templateUrl: '/modules/users/client/views/user/view-user.client.view.html',
         controller: 'UserController',
         controllerAs: 'vm',
         resolve: {
@@ -28,9 +28,9 @@
           pageTitle: '{{ userResolve.displayName }}'
         }
       })
-      .state('admin.user-edit', {
+      .state('user.user-edit', {
         url: '/users/:userId/edit',
-        templateUrl: '/modules/users/client/views/admin/edit-user.client.view.html',
+        templateUrl: '/modules/users/client/views/user/edit-user.client.view.html',
         controller: 'UserController',
         controllerAs: 'vm',
         resolve: {

@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('users.admin')
+    .module('users.user')
     .controller('UserListController', UserListController);
 
   UserListController.$inject = ['$scope', '$filter', 'AdminService'];

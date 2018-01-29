@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('articles.admin')
+    .module('articles.user')
     .controller('ArticlesAdminListController', ArticlesAdminListController);
 
   ArticlesAdminListController.$inject = ['ArticlesService'];
