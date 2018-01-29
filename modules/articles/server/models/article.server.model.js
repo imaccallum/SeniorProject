@@ -17,13 +17,39 @@ var ArticleSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  updated: {
+    type: Date,
+    default: Date.now
+  },
   title: {
     type: String,
     default: '',
     trim: true,
     required: 'Title cannot be blank'
   },
+  subtitle: {
+    type: String,
+    default: '',
+    trim: true,
+    required: 'SubTitle cannot be blank'
+  },
+  bannerURL: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  contentURL: {
+    type: String,
+    default: '',
+    trim: true,
+    required: 'Content URL cannot be blank'
+  },
   content: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  renderedContent: {
     type: String,
     default: '',
     trim: true

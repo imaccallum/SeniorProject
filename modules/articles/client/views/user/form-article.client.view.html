@@ -17,6 +17,24 @@
             <p class="help-block error-text" ng-message="required">Article title is required.</p>
           </div>
         </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">SubTitle</label>
+          <input name="subtitle" type="text" ng-model="vm.article.subtitle" id="subtitle" class="form-control" placeholder="subTitle" required autofocus>
+          <div ng-messages="vm.form.articleForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Article SubTitle is required.</p>
+          </div>
+        </div>
+       <div class="form-group" show-errors>
+          <label class="control-label" for="title">Content URL (Usually GitHub)</label>
+          <input name="contentURL" type="text" ng-model="vm.article.contentURL" id="contentURL" class="form-control" placeholder="ContentURL" required autofocus>
+          <div ng-messages="vm.form.articleForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Article Content URL is required.</p>
+          </div>
+        </div>
+       <div class="form-group" show-errors>
+          <label class="control-label" for="title">Set Picture</label>
+          <input name="bannerURL" type="text" ng-model="vm.article.bannerURL" id="bannerURL" class="form-control" placeholder="(Picture chooseing API Placeholder)" required autofocus>
+        </div>
         <div class="form-group">
           <label class="control-label" for="content">Content</label>
           <textarea name="content" data-ng-model="vm.article.content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
