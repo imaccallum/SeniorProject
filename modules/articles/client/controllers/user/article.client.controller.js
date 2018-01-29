@@ -3,11 +3,11 @@
 
   angular
     .module('articles.user')
-    .controller('ArticlesAdminController', ArticlesAdminController);
+    .controller('ArticlesUserController', ArticlesUserController);
 
-  ArticlesAdminController.$inject = ['$scope', '$state', '$window', 'articleResolve', 'Authentication', 'Notification'];
+  ArticlesUserController.$inject = ['$scope', '$state', '$window', 'articleResolve', 'Authentication', 'Notification'];
 
-  function ArticlesAdminController($scope, $state, $window, article, Authentication, Notification) {
+  function ArticlesUserController($scope, $state, $window, article, Authentication, Notification) {
     var vm = this;
 
     vm.article = article;
