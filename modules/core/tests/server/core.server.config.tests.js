@@ -22,8 +22,6 @@ var _ = require('lodash'),
 var app,
   agent,
   user1,
-  user1,
-  userFromSeedConfig,
   userFromSeedConfig,
   originalLogConfig;
 
@@ -34,7 +32,6 @@ describe('Configuration Tests:', function () {
     var articleSeedConfig;
     var userSeedConfig;
     var _user;
-    var _user;
     var _article;
 
     before(function (done) {
@@ -42,14 +39,6 @@ describe('Configuration Tests:', function () {
         username: 'test-seed-user',
         email: 'test-user@localhost.com',
         firstName: 'Admin',
-        lastName: 'Test',
-        roles: ['user']
-      };
-
-      _user = {
-        username: 'test-seed-user',
-        email: 'test-user@localhost.com',
-        firstName: 'User',
         lastName: 'Test',
         roles: ['user']
       };
@@ -166,10 +155,6 @@ describe('Configuration Tests:', function () {
       userSeedConfig.docs.should.be.instanceof(Array).and.have.lengthOf(2);
 
       var user = new User(userSeedConfig.docs[0].data);
-      user.email = 'temp-user@localhost.com';
-      user.provider = 'local';
-
-      var user = new User(userSeedConfig.docs[1].data);
       user.email = 'temp-user@localhost.com';
       user.provider = 'local';
 
