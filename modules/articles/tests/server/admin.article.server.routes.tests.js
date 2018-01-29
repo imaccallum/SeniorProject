@@ -20,7 +20,7 @@ var app,
 /**
  * Article routes tests
  */
-describe('Article Admin CRUD tests', function () {
+describe('Article User CRUD tests', function () {
   before(function (done) {
     // Get application
     app = express.init(mongoose.connection.db);

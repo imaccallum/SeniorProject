@@ -17,7 +17,7 @@
       .state('user.articles.list', {
         url: '',
         templateUrl: '/modules/articles/client/views/user/list-articles.client.view.html',
-        controller: 'ArticlesAdminListController',
+        controller: 'ArticlesUserListController',
         controllerAs: 'vm',
         data: {
           roles: ['user']

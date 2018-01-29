@@ -1,7 +1,7 @@
 ﻿(function () {
   'use strict';
 
-  describe('Articles Admin Controller Tests', function () {
+  describe('Articles User Controller Tests', function () {
     // Initialize global variables
     var ArticlesUserController,
       $scope,

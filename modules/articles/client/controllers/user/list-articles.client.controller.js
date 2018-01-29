@@ -3,11 +3,11 @@
 
   angular
     .module('articles.user')
-    .controller('ArticlesAdminListController', ArticlesAdminListController);
+    .controller('ArticlesUserListController', ArticlesUserListController);
 
-  ArticlesAdminListController.$inject = ['ArticlesService'];
+  ArticlesUserListController.$inject = ['ArticlesService'];
 
-  function ArticlesAdminListController(ArticlesService) {
+  function ArticlesUserListController(ArticlesService) {
     var vm = this;
 
     vm.articles = ArticlesService.query();

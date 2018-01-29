@@ -14,13 +14,19 @@ acl = new acl(new acl.memoryBackend());
 exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['user'],
-    allows: [{
+    allows: [
+    {
+      resources: '/api/articles/me',
+      permissions: ['get']
+    },
+    {
       resources: '/api/articles',
       permissions: '*'
     }, {
       resources: '/api/articles/:articleId',
       permissions: '*'
-    }]
+    }
+    ]
   }, {
     roles: ['guest'],
     allows: [{
@@ -32,6 +38,17 @@ exports.invokeRolesPolicies = function () {
     }]
   }]);
 };
+
+
+exports.requiresUser = function (req, res, next) {
+
+  
+  
+}
+
+exports.requiresArticleOwner = function (req, res, next) {
+
+}
 
 /**
  * Check If Articles Policy Allows

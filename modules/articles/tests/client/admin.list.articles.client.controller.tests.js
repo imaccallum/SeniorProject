@@ -1,9 +1,9 @@
 ﻿(function () {
   'use strict';
 
-  describe('Admin Articles List Controller Tests', function () {
+  describe('User Articles List Controller Tests', function () {
     // Initialize global variables
-    var ArticlesAdminListController,
+    var ArticlesUserListController,
       $scope,
       $httpBackend,
       $state,
@@ -63,7 +63,7 @@
       };
 
       // Initialize the Articles List controller.
-      ArticlesAdminListController = $controller('ArticlesAdminListController as vm', {
+      ArticlesUserListController = $controller('ArticlesUserListController as vm', {
         $scope: $scope
       });
 

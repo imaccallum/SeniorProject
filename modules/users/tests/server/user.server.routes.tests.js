@@ -16,7 +16,6 @@ var app,
   agent,
   credentials,
   credentialsEmail,
-  user,
   _user,
   user;
 

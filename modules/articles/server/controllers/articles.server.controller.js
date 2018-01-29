@@ -92,6 +92,15 @@ exports.list = function (req, res) {
   });
 };
 
+
+exports.myArticles = function (req, res) {
+  const { user } = req
+
+  if (!user) {
+    
+  }
+}
+
 /**
  * Article middleware
  */
