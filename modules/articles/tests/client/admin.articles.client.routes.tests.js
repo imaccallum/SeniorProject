@@ -59,7 +59,7 @@
 
       describe('Create Route', function () {
         var createstate,
-          ArticlesAdminController,
+          ArticlesUserController,
           mockArticle;
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
@@ -70,7 +70,7 @@
           mockArticle = new ArticlesService();
 
           // Initialize Controller
-          ArticlesAdminController = $controller('ArticlesAdminController as vm', {
+          ArticlesUserController = $controller('ArticlesUserController as vm', {
             $scope: $scope,
             articleResolve: mockArticle
           });
@@ -105,7 +105,7 @@
 
       describe('Edit Route', function () {
         var editstate,
-          ArticlesAdminController,
+          ArticlesUserController,
           mockArticle;
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
@@ -120,7 +120,7 @@
           });
 
           // Initialize Controller
-          ArticlesAdminController = $controller('ArticlesAdminController as vm', {
+          ArticlesUserController = $controller('ArticlesUserController as vm', {
             $scope: $scope,
             articleResolve: mockArticle
           });
