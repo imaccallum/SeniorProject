@@ -40,8 +40,14 @@ exports.invokeRolesPolicies = function () {
 };
 
 
-exports.requiresArticleOwner = function (req, res, next) {
+exports.requiresUser = function (req, res, next) {
+
   
+  
+}
+
+exports.requiresArticleOwner = function (req, res, next) {
+
 }
 
 /**

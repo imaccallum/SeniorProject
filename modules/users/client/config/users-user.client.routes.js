@@ -41,10 +41,10 @@
         }
       });
 
-    getUser.$inject = ['$stateParams', 'AdminService'];
+    getUser.$inject = ['$stateParams', 'UserService'];
 
-    function getUser($stateParams, AdminService) {
-      return AdminService.get({
+    function getUser($stateParams, UserService) {
+      return UserService.get({
         userId: $stateParams.userId
       }).$promise;
     }

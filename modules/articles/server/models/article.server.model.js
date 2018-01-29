@@ -48,7 +48,7 @@ function seed(doc, options) {
   return new Promise(function (resolve, reject) {
 
     skipDocument()
-      .then(findAdminUser)
+      .then(findUserUser)
       .then(add)
       .then(function (response) {
         return resolve(response);
@@ -57,7 +57,7 @@ function seed(doc, options) {
         return reject(err);
       });
 
-    function findAdminUser(skip) {
+    function findUserUser(skip) {
       var User = mongoose.model('User');
 
       return new Promise(function (resolve, reject) {
