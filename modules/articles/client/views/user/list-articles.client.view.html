@@ -7,6 +7,9 @@
       </a>
     </h1>
   </div>
+          <div class="col-md-4" style="margin-top: 2em">
+        <input class="form-control col-md-4" type="text" ng-model="vm.search" placeholder="Search" ng-change="vm.figureOutItemsToDisplay()" />
+      </div>
   <div class="list-group">
     <a data-ng-repeat="article in vm.articles" data-ui-sref="user.articles.edit({articleId: article._id})" class="list-group-item">
     <img style ="max-height: 100px;max-width: 200px"data-ng-src="{{article.bannerURL}}" />      
@@ -22,7 +25,5 @@
       <p class="list-group-item-text" data-ng-bind="article.content"></p>
     </a>
   </div>
-  <div class="alert alert-warning text-center" data-ng-if="vm.articles.$resolved && !articles.length">
-    No articles yet, why don't you <a data-ui-sref="user.articles.create">create one</a>?
-  </div>
+  <uib-pagination boundary-links="true" max-size="2" items-per-page="vm.itemsPerPage" total-items="vm.filterLength" ng-model="vm.currentPage" ng-change="vm.pageChanged()"></uib-pagination>
 </section>
