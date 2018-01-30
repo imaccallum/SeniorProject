@@ -92,14 +92,41 @@ exports.list = function (req, res) {
   });
 };
 
-
 exports.myArticles = function (req, res) {
-  const { user } = req
+  console.log('MY ARTICLES')
 
-  if (!user) {
-    
-  }
-}
+    Article.find().sort('-created').populate('user', 'displayName').exec(function (err, articles) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(articles);
+    }
+  });
+
+
+  // const id = req.user.id
+
+  // if (!id) {
+  //   return res.json(400).send({
+  //     message: 'No id provided'
+  //   })
+  // }
+
+  // Article.find({
+  //   'user.$id': id
+  // }).sort('-created').populate('user', 'displayName').exec(function (err, articles) {
+  //   if (err) {
+  //     return res.status(422).send({
+  //       message: errorHandler.getErrorMessage(err)
+  //     });
+  //   } else {
+  //     res.json(articles);
+  //   }
+  // });
+};
+
 
 /**
  * Article middleware

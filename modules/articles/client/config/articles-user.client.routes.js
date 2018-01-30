@@ -11,8 +11,11 @@
     $stateProvider
       .state('user.articles', {
         abstract: true,
-        url: '/articles',
-        template: '<ui-view/>'
+        url: '/me',
+        template: '<ui-view/>',
+        data: {
+          roles: ['user']
+        }
       })
       .state('user.articles.list', {
         url: '',

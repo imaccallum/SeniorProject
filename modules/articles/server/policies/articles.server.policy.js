@@ -16,13 +16,14 @@ exports.invokeRolesPolicies = function () {
     roles: ['user'],
     allows: [
     {
+      resources: '/api/articles',
+      permissions: '*'
+    }, 
+    {
       resources: '/api/articles/me',
       permissions: ['get']
     },
     {
-      resources: '/api/articles',
-      permissions: '*'
-    }, {
       resources: '/api/articles/:articleId',
       permissions: '*'
     }
@@ -41,13 +42,11 @@ exports.invokeRolesPolicies = function () {
 
 
 exports.requiresUser = function (req, res, next) {
-
-  
-  
+  next()
 }
 
 exports.requiresArticleOwner = function (req, res, next) {
-
+  next()
 }
 
 /**
