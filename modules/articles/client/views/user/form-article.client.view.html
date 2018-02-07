@@ -1,11 +1,13 @@
 <section>
   <div class="page-header">
-    <h1>{{vm.article._id ? 'Edit Article' : 'New Article'}}</h1>
-  </div>
-  <div class="pull-right">
-    <a ng-show="vm.article._id" class="btn btn-primary" ng-click="vm.remove()">
+    <h1>{{vm.article._id ? 'Edit Article' : 'New Article'}}         <a ng-show="vm.article._id" class="btn btn-primary" ng-click="vm.remove()">
       <i class="glyphicon glyphicon-trash"></i>
-    </a>
+    </a></h1>
+  </div>
+    <div class="col-md-12">
+
+  <div class="pull-right">
+  </div>
   </div>
   <div class="col-md-12">
     <form name="vm.form.articleForm" class="form-horizontal" ng-submit="vm.save(vm.form.articleForm.$valid)" novalidate>
@@ -36,8 +38,13 @@
           </div>
         </div>
             <div class="form-group">
-        <button class="btn btn-default" type="button" id="pullFromGitHub" ng-click="vm.pullFromGitHub()">Preview from GitHub</button>
+        <a class="btn pull-left" 
+           ng-class="{true: 'btn-primary', false: 'btn-danger'}[!patient.archived]"
+           ng-click="patient.archived = !patient.archived; vm.pullFromGitHub(patient.archived,vm.article.contentURL)">
+          {{!patient.archived && 'Preview as Rendered HTML' || 'Preview as Markdown' }} 
+        </a>
         </div>
+
         <div class="form-group">
           <label class="control-label" for="content" id="contentt">(Content Shows Here)</label>
         </div>

@@ -13,6 +13,10 @@
     }, {
       update: {
         method: 'PUT'
+      },
+      pullMarkdownForUrl: {
+        method: 'POST',
+        url: '/api/articles/md'
       }
     });
 
@@ -20,10 +24,31 @@
       createOrUpdate: function () {
         var article = this;
         return createOrUpdate(article);
+      }, pullMarkdownForUrl: function (url) {
+        var article = this;
+        return pullMarkdownForUrl(url)
       }
     });
 
     return Article;
+
+    function pullMarkdownForUrl(url) {
+
+      if (url) {
+        article.$pullMarkdownForUrl(onSuccess, onError)
+      }
+      // Handle successful response
+      function onSuccess(url) {
+        // Any required internal processing from inside the service, goes here.
+      }
+
+      // Handle error response
+      function onError(errorResponse) {
+        var error = errorResponse.data;
+        // Handle error internally
+        handleError(error);
+      }
+    }
 
     function createOrUpdate(article) {
       if (article._id) {
