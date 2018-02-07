@@ -24,6 +24,10 @@
             <p class="help-block error-text" ng-message="required">Article SubTitle is required.</p>
           </div>
         </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Set Picture</label>
+          <input name="bannerURL" type="text" ng-model="vm.article.bannerURL" id="bannerURL" class="form-control" placeholder="(Picture chooseing API Placeholder)" required autofocus>
+        </div>
        <div class="form-group" show-errors>
           <label class="control-label" for="title">Content URL (Usually GitHub)</label>
           <input name="contentURL" type="text" ng-model="vm.article.contentURL" id="contentURL" class="form-control" placeholder="ContentURL" required autofocus>
@@ -31,18 +35,17 @@
             <p class="help-block error-text" ng-message="required">Article Content URL is required.</p>
           </div>
         </div>
-       <div class="form-group" show-errors>
-          <label class="control-label" for="title">Set Picture</label>
-          <input name="bannerURL" type="text" ng-model="vm.article.bannerURL" id="bannerURL" class="form-control" placeholder="(Picture chooseing API Placeholder)" required autofocus>
+            <div class="form-group">
+        <button class="btn btn-default" type="button" id="pullFromGitHub" ng-click="vm.pullFromGitHub()">Preview from GitHub</button>
         </div>
         <div class="form-group">
-          <label class="control-label" for="content">Content</label>
-          <textarea name="content" data-ng-model="vm.article.content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
+          <label class="control-label" for="content" id="contentt">(Content Shows Here)</label>
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.article._id ? 'Update' : 'Create'}}</button>
         </div>
       </fieldset>
     </form>
+
   </div>
 </section>

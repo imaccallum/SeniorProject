@@ -14,8 +14,23 @@
     vm.authentication = Authentication;
     vm.form = {};
     vm.remove = remove;
+    vm.pullFromGitHub = pullFromGitHub;
     vm.save = save;
 
+    // Remove existing Article
+    function pullFromGitHub(){
+        // GET from Github
+
+        //get download link from GET
+
+        //Use download link
+
+        //Parse .md to html string
+
+        //change content below to string
+
+        document.getElementById("contentt").innerHTML = "<h1>New text!</h1>";
+    }
     // Remove existing Article
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
