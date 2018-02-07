@@ -1,17 +1,29 @@
 'use strict';
 
+
 /**
  * Module dependencies
  */
 var path = require('path'),
   mongoose = require('mongoose'),
   Article = mongoose.model('Article'),
-  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
+  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  http = require('http');
+
+  const { URL } = require('url');
 
 /**
  * Create an article
  */
 exports.create = function (req, res) {
+
+
+
+
+
+
+
+
   var article = new Article(req.body);
   article.user = req.user;
 
@@ -25,6 +37,62 @@ exports.create = function (req, res) {
     }
   });
 };
+
+
+
+const isMarkdownUrl = (url) => {
+  const pattern = '*.md'
+  var regex = new RegExp(pattern);
+  return regex.test(url);
+}
+
+
+
+exports.pullMarkdownFromUrl = function (req, res) {
+  console.log('PULL MARKDOWN FROM URL')
+  const { url } = req.body
+
+  if (!url) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+  }
+
+  const parsedUrl = new URL(url)
+
+  if (!isMarkdownUrl(parsedUrl.href)) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+  }
+
+  const host = parsedUrl.host
+
+  if (host == 'github.com') {
+
+    const path = parsedUrl.path
+    console.log('GITHUB PATH')
+    console.log(path)
+
+  } else {
+    console.log('URL')
+    console.log(parsedUrl.href)
+  }
+
+
+  // var request = http.get(url, function(response) {
+  //   console.log('RESPONSE')
+  //   res.json(response)
+  // });
+
+
+  // Use url to hit github API
+  
+
+  res.json('markdown')
+}
+
+
 
 /**
  * Show the current article
@@ -92,14 +160,41 @@ exports.list = function (req, res) {
   });
 };
 
-
 exports.myArticles = function (req, res) {
-  const { user } = req
+  console.log('MY ARTICLES')
 
-  if (!user) {
-    
-  }
-}
+    Article.find().sort('-created').populate('user', 'displayName').exec(function (err, articles) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(articles);
+    }
+  });
+
+
+  // const id = req.user.id
+
+  // if (!id) {
+  //   return res.json(400).send({
+  //     message: 'No id provided'
+  //   })
+  // }
+
+  // Article.find({
+  //   'user.$id': id
+  // }).sort('-created').populate('user', 'displayName').exec(function (err, articles) {
+  //   if (err) {
+  //     return res.status(422).send({
+  //       message: errorHandler.getErrorMessage(err)
+  //     });
+  //   } else {
+  //     res.json(articles);
+  //   }
+  // });
+};
+
 
 /**
  * Article middleware

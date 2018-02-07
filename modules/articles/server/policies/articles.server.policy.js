@@ -16,13 +16,18 @@ exports.invokeRolesPolicies = function () {
     roles: ['user'],
     allows: [
     {
+      resources: '/api/articles',
+      permissions: '*'
+    }, 
+    {
       resources: '/api/articles/me',
       permissions: ['get']
     },
     {
-      resources: '/api/articles',
-      permissions: '*'
-    }, {
+      resources: '/api/articles/md',
+      permissions: ['post']
+    },
+    {
       resources: '/api/articles/:articleId',
       permissions: '*'
     }
@@ -41,13 +46,11 @@ exports.invokeRolesPolicies = function () {
 
 
 exports.requiresUser = function (req, res, next) {
-
-  
-  
+  next()
 }
 
 exports.requiresArticleOwner = function (req, res, next) {
-
+  next()
 }
 
 /**
@@ -71,6 +74,7 @@ exports.isAllowed = function (req, res, next) {
         // Access granted! Invoke next middleware
         return next();
       } else {
+        console.log('User is not authorized')
         return res.status(403).json({
           message: 'User is not authorized'
         });
