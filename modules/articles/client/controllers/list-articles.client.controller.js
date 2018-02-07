@@ -5,12 +5,14 @@
     .module('articles')
     .controller('ArticlesListController', ArticlesListController);
 
-  ArticlesListController.$inject = ['ArticlesService'];
+  ArticlesListController.$inject = ['$scope', '$filter', 'ArticlesService'];
 
-  function ArticlesListController(ArticlesService) {
+  function ArticlesListController($scope, $filter, ArticlesService) {
     var vm = this;
+    vm.buildPager = buildPager;
+    vm.figureOutItemsToDisplay = figureOutItemsToDisplay;
+    vm.pageChanged = pageChanged;
 
-    //vm.articles = ArticlesService.query();
     ArticlesService.query(function (data) {
       vm.articles = data;
       vm.buildPager();
@@ -18,7 +20,7 @@
 
     function buildPager() {
       vm.pagedItems = [];
-      vm.itemsPerPage = 15;
+      vm.itemsPerPage = 2;
       vm.currentPage = 1;
       vm.figureOutItemsToDisplay();
     }
@@ -38,3 +40,4 @@
     }
   }
 }());
+

@@ -70,6 +70,8 @@
       }
     }
 
+    
+
     function handleError(error) {
       // Log error
       $log.error(error);

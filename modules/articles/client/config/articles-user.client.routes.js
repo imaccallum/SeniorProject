@@ -11,13 +11,16 @@
     $stateProvider
       .state('user.articles', {
         abstract: true,
-        url: '/articles',
-        template: '<ui-view/>'
+        url: '/me',
+        template: '<ui-view/>',
+        data: {
+          roles: ['user']
+        }
       })
       .state('user.articles.list', {
         url: '',
         templateUrl: '/modules/articles/client/views/user/list-articles.client.view.html',
-        controller: 'ArticlesAdminListController',
+        controller: 'ArticlesUserListController',
         controllerAs: 'vm',
         data: {
           roles: ['user']

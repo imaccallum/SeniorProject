@@ -1,7 +1,7 @@
 ﻿(function () {
   'use strict';
 
-  // Configuring the Articles Admin module
+  // Configuring the Articles User module
   angular
     .module('articles.user')
     .run(menuConfig);

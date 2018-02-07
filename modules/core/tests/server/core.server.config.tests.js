@@ -22,8 +22,6 @@ var _ = require('lodash'),
 var app,
   agent,
   user1,
-  user1,
-  userFromSeedConfig,
   userFromSeedConfig,
   originalLogConfig;
 
@@ -34,18 +32,9 @@ describe('Configuration Tests:', function () {
     var articleSeedConfig;
     var userSeedConfig;
     var _user;
-    var _user;
     var _article;
 
     before(function (done) {
-      _user = {
-        username: 'test-seed-user',
-        email: 'test-user@localhost.com',
-        firstName: 'Admin',
-        lastName: 'Test',
-        roles: ['user']
-      };
-
       _user = {
         username: 'test-seed-user',
         email: 'test-user@localhost.com',
@@ -169,10 +158,6 @@ describe('Configuration Tests:', function () {
       user.email = 'temp-user@localhost.com';
       user.provider = 'local';
 
-      var user = new User(userSeedConfig.docs[1].data);
-      user.email = 'temp-user@localhost.com';
-      user.provider = 'local';
-
       user.save()
         .then(function () {
           return user.save();
@@ -198,9 +183,9 @@ describe('Configuration Tests:', function () {
         .then(function (users) {
           users.should.be.instanceof(Array).and.have.lengthOf(1);
 
-          var newAdmin = users.pop();
-          userSeedConfig.docs[0].data.username.should.equal(newAdmin.username);
-          userSeedConfig.docs[0].data.email.should.equal(newAdmin.email);
+          var newUser = users.pop();
+          userSeedConfig.docs[0].data.username.should.equal(newUser.username);
+          userSeedConfig.docs[0].data.email.should.equal(newUser.email);
 
           return User.find({ username: user.username }).exec();
         })
@@ -355,9 +340,9 @@ describe('Configuration Tests:', function () {
         .then(function (users) {
           users.should.be.instanceof(Array).and.have.lengthOf(1);
 
-          var newAdmin = users.pop();
-          _user.username.should.equal(newAdmin.username);
-          _user.email.should.equal(newAdmin.email);
+          var newUser = users.pop();
+          _user.username.should.equal(newUser.username);
+          _user.email.should.equal(newUser.email);
 
           return User.find({ username: _user.username }).exec();
         })

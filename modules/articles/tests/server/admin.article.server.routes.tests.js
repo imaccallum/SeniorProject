@@ -20,7 +20,7 @@ var app,
 /**
  * Article routes tests
  */
-describe('Article Admin CRUD tests', function () {
+describe('Article User CRUD tests', function () {
   before(function (done) {
     // Get application
     app = express.init(mongoose.connection.db);
@@ -60,6 +60,7 @@ describe('Article Admin CRUD tests', function () {
       })
       .catch(done);
   });
+
 
   it('should be able to save an article if logged in', function (done) {
     agent.post('/api/auth/signin')

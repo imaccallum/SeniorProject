@@ -92,6 +92,8 @@
     "passport-local": "~1.0.0",
     "passport-paypal-openidconnect": "^0.1.1",
     "passport-twitter": "~1.0.4",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5",
     "run-sequence": "~2.1.0",
     "serve-favicon": "^2.4.5",
     "socket.io": "^2.0.3",

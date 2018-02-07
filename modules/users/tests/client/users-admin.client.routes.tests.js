@@ -1,7 +1,7 @@
 ﻿(function () {
   'use strict';
 
-  describe('Users Admin Route Tests', function () {
+  describe('Users User Route Tests', function () {
     // Initialize global variables
     var $scope,
       Authentication,
