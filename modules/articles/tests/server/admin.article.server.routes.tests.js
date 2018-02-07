@@ -61,6 +61,7 @@ describe('Article User CRUD tests', function () {
       .catch(done);
   });
 
+
   it('should be able to save an article if logged in', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)

@@ -61,6 +61,24 @@ describe('Article CRUD tests', function () {
       .catch(done);
   });
 
+
+  it('should fetch mardown from url', function (done) {
+    const body = {
+      url: 'http://github.com/ReactiveX/RxSwift/blob/master/README.md'
+    }
+
+    agent.post('/api/articles/md')
+      .send(credentials)
+      .expect(200)
+      .end(function (err, res) {
+        console.log('RESPONSE')
+        console.log(err)
+        console.log(res)
+        done(err)
+      });
+  });
+
+
   it('should not be able to save an article if logged in without the "user" role', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)

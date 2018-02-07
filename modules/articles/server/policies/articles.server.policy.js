@@ -24,6 +24,10 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get']
     },
     {
+      resources: '/api/articles/md',
+      permissions: ['post']
+    },
+    {
       resources: '/api/articles/:articleId',
       permissions: '*'
     }
@@ -70,6 +74,7 @@ exports.isAllowed = function (req, res, next) {
         // Access granted! Invoke next middleware
         return next();
       } else {
+        console.log('User is not authorized')
         return res.status(403).json({
           message: 'User is not authorized'
         });

@@ -13,7 +13,7 @@
     }, {
       update: {
         method: 'PUT'
-      }
+      },
     });
 
     angular.extend(Article.prototype, {
@@ -44,6 +44,8 @@
         handleError(error);
       }
     }
+
+    
 
     function handleError(error) {
       // Log error
