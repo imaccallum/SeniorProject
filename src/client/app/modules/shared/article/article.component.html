@@ -1,0 +1,5 @@
+<div class="article-container">
+	<div class="article-content" 
+	*ngIf="article.contentHtml" 
+	[innerHTML]="article.contentHtml | safeHtml"></div>
+</div>

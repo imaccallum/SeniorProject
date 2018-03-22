@@ -1,0 +1,38 @@
+<div class="content-container form-container login-container">
+	
+	<form 
+		class="form-horizontal"
+		#createArticleForm="ngForm" 
+		(submit)="onSubmit(createArticleForm)">
+
+		<fieldset>
+			<legend>Create Article</legend>
+
+			<div class="form-group">
+				<label>Title</label>
+				<input type="text" class="form-control" name="title" placeholder="title" ngModel>
+			</div>
+
+			<div class="form-group">
+				<label>Subtitle</label>
+				<input type="text" class="form-control" name="subtitle" placeholder="subtitle" ngModel>
+			</div>
+
+			<div class="form-group">
+				<label>URL</label>
+				<input type="text" class="form-control" name="url" placeholder="url" ngModel>
+			</div>
+
+			<button type="submit" class="btn btn-success">Pull</button>
+
+		</fieldset>
+
+	</form>
+</div>
+
+
+<p>RENDERED</p>
+
+<app-article *ngIf="article" [article]="article"></app-article>
+
+

@@ -1,0 +1,151 @@
+<div class="content-container form-container signup-container">
+  <form 
+  	class="form-horizontal" 
+  	#signupForm="ngForm" 
+  	(submit)="onSubmit(signupForm)">
+
+
+	<fieldset>
+
+		<legend>Sign Up</legend>
+
+		<div class="form-group">
+			<label>First Name</label>
+			<input type="text" class="form-control" name="firstName" placeholder="First Name" ngModel>
+		</div>
+
+		<div class="form-group">
+			<label>Last Name</label>
+			<input type="text" class="form-control" name="lastName" placeholder="Last Name" ngModel>
+		</div>
+
+		<div class="form-group">
+			<label>Email</label>
+			<input type="email" class="form-control" name="email" placeholder="Email" ngModel>
+		</div>
+
+		<div class="form-group">
+			<label>Username</label>
+			<input type="text" class="form-control" name="username" placeholder="Username" ngModel>
+		</div>
+
+		<div class="form-group">
+			<label>Password</label>
+			<input type="password" class="form-control" name="password" placeholder="Password" ngModel>
+
+			<label>Confirm Password</label>
+			<input type="password" class="form-control" name="passwordConfirmation" ngModel>
+		</div>
+
+		<button type="submit" class="form-control" class="btn btn-success">Sign Up</button>
+
+	</fieldset>
+  
+  </form>
+</div>
+
+
+
+
+<!--
+<div class="content-container form-container">
+
+  <form id="signup-form" method="POST" class="form-horizontal" role="form">
+
+
+
+
+    <fieldset>
+
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number </label>
+        <input required type="text" name="phoneNumber" id="phone" class="form-control phone" placeholder="Phone number"/>
+      </div>
+
+
+      <div class="form-group">
+        <label for="email">Email Address </label>
+        <input class="form-control" required type="text" name="email" id = "email" placeholder="Email address" />
+        <div class="status" id="status"></div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="password">Password </label>
+        <input required name="password" type="password" class="form-control inputpass" placeholder="Password" id="password"/>
+
+        <label for="passwordConfirmation"></label>
+        <input required name="passwordConfirmation" type="password" class="form-control inputpass" placeholder="Confirm Password"  id="passwordConfirmation"/>
+      </div>
+
+      <hr>
+
+
+
+       <div class="form-group">
+        <label for="name">First Name</label>
+        <input id="firstName" name="firstName" type="text" placeholder="First name" class="form-control input-md">
+      </div>
+
+      <div class="form-group">
+        <label for="name">Last Name </label>
+        <input id="lastName" name="lastName" type="text" placeholder="Last name" class="form-control input-md">
+      </div>
+
+
+      <hr>
+
+      {{!-- Birthday --}}
+      <div class="form-group">
+          <label for="birthday">Birthday </label>
+          <input name="birthday" id="birthday" class="datepicker" data-date-format="mm/dd/yyyy">
+      </div>
+
+      {{!-- Gender --}}
+      <div class="form-group">
+
+        <label class="control-label" for="gender">Gender </label>
+
+        <label class="radio-inline" for="gender-0">
+          <input type="radio" name="gender" id="gender-0" value="male" checked="checked">
+          Male
+        </label>
+        <label class="radio-inline" for="gender-1">
+          <input type="radio" name="gender" id="gender-1" value="female">
+          Female
+        </label>
+        <label class="radio-inline" for="gender-2">
+          <input type="radio" name="gender" id="gender-2" value="other">
+          Other
+        </label>
+      </div>
+
+
+      <hr>
+
+
+      <div class="form-group">
+        <input type="checkbox" required name="terms" id="field_terms">
+        <small for="terms">I agree with the <a href="terms.php" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</small>
+      </div>
+
+
+      <hr>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+
+    </fieldset>
+
+  </form>
+
+
+  <hr class="or-divider">
+
+  <a class="btn btn-block btn-social btn-facebook" href="login/facebook">
+    <span class="fa fa-facebook"></span> Login with Facebook
+  </a>
+
+</div>
+ -->

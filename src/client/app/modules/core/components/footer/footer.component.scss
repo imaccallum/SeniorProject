@@ -1,0 +1,283 @@
+
+.footer {
+    background-color: #f8f8f8;
+    border: 1px solid #e7e7e7;
+    padding: 12px;
+    font-size: 14px;
+    position: relative;
+    z-index: 20;
+    flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+}
+
+.footer .row {
+    overflow-x: scroll;
+}
+
+.footer .footer-content {
+
+}
+
+.footer .footer-copyright {
+  padding-top: 8px;
+  text-align: center;
+}
+
+.footer ul {
+  list-style-type: none;
+  padding-left: 0;
+  line-height: 1.7;
+}
+
+.footer h5 {
+  font-size: 18px;
+  color: rgb(247, 202, 24);
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+.footer a {
+  color:#d2d1d1;
+  text-decoration: none;
+}
+
+.footer a:hover, .footer a:focus {
+  text-decoration: none;
+  color: rgb(36, 181, 229);
+}
+
+
+.footer .social-networks {
+  text-align: center;
+}
+
+.footer .social-networks a {
+    font-size: 32px;
+    margin-right: 5px;
+    margin-left: 5px;
+    color: #0F0F0F;
+    padding: 10px;
+    transition: 0.2s;
+}
+
+.footer .social-networks a:hover{
+  text-decoration: none;
+
+}
+
+
+
+
+/* ======= Footer ======= */
+
+
+.footer p {
+  -webkit-opacity: 0.5;
+  -moz-opacity: 0.5;
+  opacity: 0.5;
+}
+.footer .btn-cta,
+.footer a.btn-cta {
+  padding: 10px;
+}
+
+
+.footer .footer-col {
+}
+
+.footer .footer-col.links .fa {
+  margin-right: 5px;
+}
+.footer .footer-col.links li {
+  margin-bottom: 10px;
+}
+.footer .footer-col.connect {
+  max-width: 450px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.footer .footer-col.connect .social {
+  margin: 0;
+  overflow: hidden;
+}
+.footer .footer-col.connect .social li {
+  /*margin-right: 10px;*/
+}
+.footer .footer-col.connect .social li a .fa {
+  color: #999;
+  font-size: 22px;
+}
+
+
+.footer .footer-col.connect .social li a:hover .fa {
+  color: #5bc0de;
+}
+.footer .footer-col.connect .social li a:hover .fa-twitter {
+  color: #1DA1F2;
+}
+.footer .footer-col.connect .social li a:hover .fa-facebook {
+  color: #0077e2;
+}
+.footer .footer-col.connect .social li a:hover .fa-google-plus {
+  color: #ef1a1a;
+}
+.footer .footer-col.connect .social li a:hover .fa-instagram {
+  color: #00aced;
+}
+.footer .footer-col.connect .social li a:hover .fa-rss {
+  color: #f88228;
+}
+
+
+
+
+
+
+.footer .footer-col.connect .btn-cta-primary {
+  background-color: #5d80a1;
+  border-color: #5d80a1;
+}
+.footer .footer-col.connect .btn-cta-primary:hover {
+  background: #4a6781;
+  border-color: #4a6781;
+}
+.footer .footer-col .title {
+  color: #000;
+  font-weight: normal;
+  font-size: 18px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  -webkit-opacity: 0.9;
+  -moz-opacity: 0.9;
+  opacity: 0.9;
+}
+
+.footer .footer-col a {
+/*  color: #6d8dab;
+*/}
+.footer .footer-col a:hover {
+  /*color: #8da6bd;*/
+}
+.footer .footer-col .signup-form {
+  padding-left: 0;
+  padding-right: 0;
+}
+.footer .footer-col .signup-form .form-control {
+  -webkit-opacity: 0.9;
+  -moz-opacity: 0.9;
+  opacity: 0.9;
+  font-size: 14px;
+  position: relative;
+  top: 2px;
+}
+.footer .footer-col .signup-form .form-control:focus {
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
+}
+.footer .footer-col .signup-form .form-group {
+  display: inline-block;
+}
+.footer .footer-col .signup-form .btn {
+  font-size: 14px;
+}
+
+.footer .contact p {
+  -webkit-opacity: 0.5;
+  -moz-opacity: 0.5;
+  opacity: 0.5;
+}
+.footer .contact p a {
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
+}
+.footer .contact .fa {
+  margin-right: 10px;
+  font-size: 20px;
+}
+.footer .contact .email .fa {
+  font-size: 16px;
+}
+.footer .bottom-bar {
+  color: #b3b3b3;
+  font-size: 14px;
+  padding-top: 8px;
+  text-align: center;
+}
+.footer .bottom-bar .copyright {
+  line-height: 1.6;
+}
+
+
+
+.input-group {
+    margin: 0 auto;
+    width: 100%;
+    min-width: 200px;
+}
+.input-group input.btn.btn,
+.input-group input.btn.btn:focus {
+    outline: none;
+    width: 60%;
+    height: 32px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    text-align: left;
+}
+.input-group button.btn {
+    width: 40%;
+    height: 32px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    text-align: center;
+}
+
+
+
+/*Download Mobile Apps*/
+.footer .download .download-list li {
+  color: #000;
+}
+.footer .download .download-list li .btn-ghost {
+  text-align: left;
+  -webkit-opacity: 0.6;
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+  width: 230px;
+  font-size: 14px;
+}
+.footer .download .download-list li .btn-ghost:hover {
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
+}
+
+.footer .footer-col a.btn-ghost,
+.footer .footer-col .btn-ghost
+{
+  background: none;
+  border: 1px solid #999;
+  color: #999;
+  padding: 8px 20px;
+  margin: 8px;
+  vertical-align: middle;
+}
+
+.footer .footer-col a.btn-ghost:hover,
+.footer .footer-col .btn-ghost:hover
+{
+  background: #5bc0de;
+  border: 1px solid #46b8da;
+  color: #FFF;
+}
+
+a.btn-ghost .fa, .btn-ghost .fa {
+  margin-right: 10px;
+  font-size: 22px;
+}
+a.btn-ghost .text, .btn-ghost .text {
+  position: relative;
+  top: -2px;
+}
+

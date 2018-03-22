@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/app",
+    "module": "es2015",
+    "baseUrl": "",
+    "types": [],
+    "paths": {
+      "@shared/*": ["app/modules/shared/*"],
+      "@environment/*": ["environment/*"],
+      "@guards/*": ["app/guards/*"],
+      "@models/*": ["app/models/*"],
+      "@resolvers/*": ["app/resolvers/*"],
+      "@services/*": ["app/services/*"],
+      "@pipes/*": ["app/pipes/*"]
+    }
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}

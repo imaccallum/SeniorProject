@@ -1,0 +1,38 @@
+// $color-code-background: #f6f8fa;
+
+
+.article-container {
+
+  padding: 0 10%;
+
+  .article-content {
+
+    padding: 24px;
+
+    pre {
+      padding: 16px;
+      background: #f6f8fa;
+    }
+  }
+}
+
+
+
+
+@media only screen and (max-width: 420px) {
+
+  .article-container {
+
+    padding: 0 0;
+
+    .article-content {
+
+      padding: 12px;
+    
+      pre {
+        padding: 8px;
+        background: #f6f8fa;
+      }
+    }
+  }
+}

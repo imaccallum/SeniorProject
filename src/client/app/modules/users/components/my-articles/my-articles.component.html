@@ -1,0 +1,10 @@
+
+<div>
+
+	<div *ngFor="let article of articles" 
+	(click)="onArticleClick(article)">
+		{{article.title}}
+		{{article.subtitle}}
+	</div>
+
+</div>

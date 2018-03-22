@@ -1,0 +1,194 @@
+<header id="header">
+
+
+  <nav id="navigation" class="navbar navbar-light navbar-fixed-top navbar-expand-lg">
+
+    <a 
+    	class="brand navbar-brand" 
+    	[routerLink]="['/']" 
+    	(click)="navbarCollapsed = true">
+
+    	<span>
+    		<img class="brand-logo" src="assets/img/logo.png">
+    	</span>
+
+        <div class="brand-name">{{brand}}</div>
+    </a>
+
+    <button class="navbar-toggler navbar-toggler-right" type="button" (click)="navbarCollapsed = !navbarCollapsed"
+            [attr.aria-expanded]="!navbarCollapsed" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse" [ngbCollapse]="navbarCollapsed" id="navbarContent">
+      
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" 
+          [routerLink]="['articles']" 
+          (click)="navbarCollapsed = true">Articles</a>
+        </li>
+
+
+<!--         <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" 
+          [routerLink]="['dashboard']" 
+          (click)="navbarCollapsed = true">Dashboard</a>
+        </li>
+ -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">User</a>
+          
+          <div class="dropdown-menu">
+
+            <a class="dropdown-item" 
+            [routerLink]="['users']" 
+            (click)="navbarCollapsed = true">Users</a>
+
+          </div>
+        </li>
+
+<!-- 
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Labels</a>
+          <div class="dropdown-menu">
+
+          </div>
+        </li>
+
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Ads</a>
+          <div class="dropdown-menu">
+            
+
+          </div>
+        </li>
+ -->
+      </ul>
+
+
+
+
+
+
+
+      <ul class="navbar-nav navbar-right">
+
+        <div *ngIf="user; then showProfile else showAuth"></div>
+    		
+    		<ng-template #showProfile>
+
+
+          <li class="nav-item dropdown">
+            
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{user?.displayName}}</a>
+            
+            <div class="dropdown-menu dropdown-menu-right">
+
+              <hr>
+
+              <a class="dropdown-item" 
+              [routerLink]="['users', 'bookmarks']" 
+              (click)="navbarCollapsed = true">Bookmarks</a>
+
+              <a class="dropdown-item" 
+              [routerLink]="['users', 'articles']" 
+              (click)="navbarCollapsed = true">My Articles</a>
+
+              <a class="dropdown-item" 
+              [routerLink]="['users', 'articles', 'create']" 
+              (click)="navbarCollapsed = true">New Article</a>
+
+
+              <hr>
+
+              <a class="dropdown-item" 
+              [routerLink]="['users', 'profile']" 
+              (click)="navbarCollapsed = true">Profile</a>
+
+              <a class="dropdown-item" 
+              [routerLink]="['users', 'settings']" 
+              (click)="navbarCollapsed = true">Settings</a>
+
+
+              <a class="dropdown-item" 
+              (click)="logout()">Logout</a>
+
+            </div>
+
+          </li>
+
+      			
+<!--     			<li class="nav-item dropdown">
+
+    	            <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+    	            	User name<span class="caret"></span>
+    	            </a>
+
+    	            <ul class="dropdown-menu dropdown-menu-right">
+
+    	              <li><a href="/pro/business/customer">Payment</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" (click)="logout()">Logout</a>
+                  </li>
+    	            
+    	            </ul>
+    	          </li>
+ -->
+    		</ng-template>
+
+
+    		<ng-template #showAuth>
+        	<li class="nav-item">
+        		<a class="nav-link" [routerLink]="['auth', 'login']">Login</a>
+        	</li>
+        	<li class="nav-item">
+        		<a class="nav-link" [routerLink]="['auth', 'signup']">Signup</a>
+        	</li>
+    		</ng-template>
+
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+
+
+<!--  <nav id="navigation" class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav">
+
+        <li class="nav-item active"><a href="/pro">Home <span class="sr-only">(current)</span></a></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+ -->
