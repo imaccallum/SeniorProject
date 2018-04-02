@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 
-import { Article } from '@models/index'
+import { Article, ArticleList } from '@models/index'
 import { UserService } from '@services/index'
 
 @Component({
@@ -11,26 +11,52 @@ import { UserService } from '@services/index'
 })
 export class ListArticlesComponent implements OnInit {
 
-	articles: Article[] = []
+	articleList?: ArticleList
 
   constructor(
   	private router: Router,
+    private route: ActivatedRoute,
   	private userService: UserService) { }
 
   ngOnInit() {
-  	this.updateArticles()
-  }
+    this.articleList = this.route.snapshot.data['articleList'];
 
-  updateArticles() {
-  	this.userService.fetchArticles().subscribe(articles => {
-  		this.articles = articles
-  	})
+    this.route.paramMap.subscribe(params => {
+      console.log('PARAMS')
+      console.log(params)
+
+      const search = params.get('search')
+      const page = <any>params.get('page')
+
+      if (!search) {
+        return
+      }
+
+      this.userService.fetchArticles(page, search).subscribe(result => {
+          this.articleList = result
+       })
+    })
+
   }
 
 	onArticleClick(article: Article) {
 		console.log('CLICK ARTICLE')
 		console.log(article)
-		this.router.navigate(['articles', article.id])
+		this.router.navigate(['/', 'articles', article.id])
 	}
 
+  onPageChange(page) {
+
+
+    // console.log('ON PAGE CHANGE')
+    // console.log(page)
+
+    // if (page == this.articleList.page) {
+    //   return
+    // }
+
+    // this.userService.fetchArticles(page, this.articleList.search).subscribe(result => {
+    //   this.articleList = result
+    // })
+  }
 }

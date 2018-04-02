@@ -19,12 +19,25 @@ import { UsersModule } from './modules/users/users.module'
 import { ArticlesModule } from './modules/articles/articles.module';
 
 import { ArticleResolver } from './resolvers/article.resolver'
+import { ArticleListResolver } from './resolvers/article.list.resolver'
+import { MyArticleListResolver } from './resolvers/my.article.list.resolver'
+
+
+import { TagInputModule } from 'ngx-chips';
+
+TagInputModule.withDefaults({
+    tagInput: {
+        placeholder: 'Add new tag'
+    }
+});
+
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    TagInputModule,
     HttpModule,
     NgbModule.forRoot(),
     BrowserModule,
@@ -38,7 +51,7 @@ import { ArticleResolver } from './resolvers/article.resolver'
     ArticlesModule
   ],
   providers: [ApiService, AuthService, UserService,
-    ArticleResolver
+    ArticleResolver, ArticleListResolver, MyArticleListResolver
   ],
   bootstrap: [AppComponent]
 })

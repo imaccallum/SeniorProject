@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { 
 	ProfileComponent,
 	SettingsComponent,
-	MyArticlesComponent,
 	EditArticleComponent,
 	CreateArticleComponent } from './modules/users/components';
 
@@ -13,7 +12,7 @@ import {
 	ViewArticleComponent } from './modules/articles/components'
 
 
-import { ArticleResolver } from '@resolvers/index'
+import { ArticleResolver, ArticleListResolver, MyArticleListResolver } from '@resolvers/index'
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,13 +27,29 @@ const routes: Routes = [
 	{ 
 		path: 'articles',
 		children: [
-			{ path: '', redirectTo: 'list', pathMatch: 'full' },
-			{ path: 'list', component: ListArticlesComponent },
+			{ 
+				path: 'recent',
+				pathMatch: 'full',
+				component: ListArticlesComponent,
+				runGuardsAndResolvers: 'always',
+				resolve: {
+					articleList: ArticleListResolver
+				}
+			},
 			{ 
 				path: ':articleId', 
 				component: ViewArticleComponent,
 				resolve: { article: ArticleResolver }
-			}
+			},
+			{ 
+				path: '',
+				pathMatch: 'full',
+				component: ListArticlesComponent,
+				runGuardsAndResolvers: 'always',
+				resolve: {
+					articleList: ArticleListResolver
+				}
+			},
 		]
 	 },
 	 { 
@@ -45,7 +60,7 @@ const routes: Routes = [
 			{ path: 'settings', component: SettingsComponent },
 			{ path: 'articles/create', component: CreateArticleComponent },
 			{ path: 'articles/:articleId', component: EditArticleComponent },
-			{ path: 'articles', component: MyArticlesComponent }
+			{ path: 'articles', component: ListArticlesComponent, resolve: { articleList: MyArticleListResolver } }
 		]
 	 }
 ];

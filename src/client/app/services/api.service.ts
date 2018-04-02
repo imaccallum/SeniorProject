@@ -25,19 +25,19 @@ export class ApiService {
 
   constructor(private http: Http, private auth: AuthService) { }
 
-  get<T>(url: string, options?: any): Observable<T> {
+  get<T>(url: string, options: any = {}): Observable<T> {
     return this.request<T>(url, RequestMethod.Get, null, options);
   }
 
-  post<T>(url: string, body: Object = {}, options?: any): Observable<T> {
+  post<T>(url: string, body: Object = {}, options: any = {}): Observable<T> {
     return this.request<T>(url, RequestMethod.Post, body, options);
   }
 
-  put<T>(url: string, body: Object = {}, options?: any): Observable<T> {
+  put<T>(url: string, body: Object = {}, options: any = {}): Observable<T> {
     return this.request<T>(url, RequestMethod.Put, body, options);
   }
 
-  delete<T>(url: string, options?: any): Observable<T> {
+  delete<T>(url: string, options: any = {}): Observable<T> {
     return this.request<T>(url, RequestMethod.Delete, null, options);
   }
 
@@ -45,6 +45,8 @@ export class ApiService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
+    console.log('REQUEST')
+    console.log(options)
 
 
     if (options && options.additionalHeaders) {
@@ -54,6 +56,8 @@ export class ApiService {
       }
     }
 
+
+
     if (!headers.has('Authorization')) {
       const token = this.auth.getToken()
 
@@ -62,12 +66,11 @@ export class ApiService {
       }
     }
 
-
-
     const requestOptions = new RequestOptions({
       url: `${this.baseUrl}/${url}`,
       method: method,
-      headers: headers
+      headers: headers,
+      params: options.params
     });
 
     if (body) {

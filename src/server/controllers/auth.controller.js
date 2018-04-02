@@ -110,7 +110,6 @@ exports.requiresLogin = async function (req, res, next) {
 
 exports.requiresBearer = async function (req, res, next) {
 
-
 	try {
 
 		const { accessToken } = extractBearer(req)

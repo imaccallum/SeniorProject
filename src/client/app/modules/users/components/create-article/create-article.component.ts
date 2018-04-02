@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-  import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 
@@ -16,24 +16,42 @@ export class CreateArticleComponent implements OnInit {
 
 	article?: Article
 
-
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private router: Router) { }
 
   ngOnInit() {
   }
 
-   onSubmit(form: NgForm) {
-    const values = form.value;
-    const { title, subtitle, url } = values
 
-  	this.userService.renderArticlePreview(title, subtitle, url).subscribe(
-  		data => this.handleArticlePreview(data),
-  		err => this.handleError(err)
-  	)
+  submitArticle(form: NgForm) {
+    const values = form.value;
+
+    const { title, subtitle, url, tags } = values
+
+    const mappedTags = tags.map(tag => tag.value)
+
+    this.userService.createArticle(title, subtitle, url, mappedTags).subscribe(
+      data => {
+        this.router.navigate(['articles', data.id])
+      },
+      err => this.handleError(err)
+    )
+  }
+
+  previewArticle(form: NgForm) {
+
+    console.log('PREVIEW ARTICLE')
+    const values = form.value;
+    const { title, subtitle, url, tags } = values
+
+    this.userService.previewArticle(title, subtitle, url, tags).subscribe(
+      data => this.handleArticlePreview(data),
+      err => this.handleError(err)
+    )
   }
 
   handleArticlePreview(article: Article) {
-  	console.log(article)
   	this.article = article
   }
 
