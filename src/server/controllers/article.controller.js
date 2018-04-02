@@ -24,12 +24,13 @@ exports.create = async function (req, res, next) {
       throw new Error('User required')
     }
 
-    const { title, subtitle, url } = body
+    const { title, subtitle, url, tags } = body
 
     const articleBody = await articleRepo.createPreview({
       title: title,
       subtitle: subtitle,
-      url: url
+      url: url,
+      tags: tags
     })
 
     console.log('ARTICLE BODY')
@@ -47,11 +48,18 @@ exports.create = async function (req, res, next) {
 
 exports.createPreview = async function (req, res, next) {
 
+  console.log('ARTICLE PREVIEW')
+
   try {
 
-    const { title, url } = req.body
+    const { title, subtitle, url, tags } = req.body
 
-    const article = await articleRepo.createPreview(title, url)
+    const article = await articleRepo.createPreview({
+      title: title,
+      subtitle: subtitle,
+      url: url,
+      tags: tags
+    })
 
     res.json(article)
 
@@ -101,9 +109,12 @@ exports.delete = function (req, res) {
 exports.list = async function (req, res, next) {
   try {
 
-    const articles = await articleRepo.list()
+    const { query } = req
+    const { page, search } = query
+    console.log(query)
+    const result = await articleRepo.list(page, 5, search)
 
-    res.json(articles)
+    res.json(result)
   } catch (err) {
     next(err)
   }
@@ -117,9 +128,9 @@ exports.myArticles = async function (req, res, next) {
 
     const { user } = req
 
-    const articles = await articleRepo.getForUser(user)
+    const result = await articleRepo.getForUser(user)
 
-    res.json(articles)
+    res.json(result)
 
   } catch (err) {
     next(err)

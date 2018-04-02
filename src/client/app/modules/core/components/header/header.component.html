@@ -11,8 +11,6 @@
     	<span>
     		<img class="brand-logo" src="assets/img/logo.png">
     	</span>
-
-        <div class="brand-name">{{brand}}</div>
     </a>
 
     <button class="navbar-toggler navbar-toggler-right" type="button" (click)="navbarCollapsed = !navbarCollapsed"
@@ -26,9 +24,27 @@
 
         <li class="nav-item" [routerLinkActive]="['active']">
           <a class="nav-link" 
-          [routerLink]="['articles']" 
+          [routerLink]="['/', 'articles', 'recent']" 
           (click)="navbarCollapsed = true">Articles</a>
         </li>
+
+        <li>
+
+            <form class="form-inline my-2 my-lg-0"
+              #searchForm="ngForm" 
+              (submit)="onSubmit(searchForm)">
+
+              <input 
+              class="form-control mr-sm-2" 
+              type="search" 
+              name="search" 
+              placeholder="Search" 
+              aria-label="Search" ngModel>
+              
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </li>
+
 
 
 <!--         <li class="nav-item" [routerLinkActive]="['active']">
@@ -37,7 +53,7 @@
           (click)="navbarCollapsed = true">Dashboard</a>
         </li>
  -->
-        <li class="nav-item dropdown">
+<!--         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">User</a>
           
           <div class="dropdown-menu">
@@ -48,7 +64,7 @@
 
           </div>
         </li>
-
+ -->
 <!-- 
 
 
@@ -92,10 +108,10 @@
 
               <hr>
 
-              <a class="dropdown-item" 
+<!--               <a class="dropdown-item" 
               [routerLink]="['users', 'bookmarks']" 
               (click)="navbarCollapsed = true">Bookmarks</a>
-
+ -->
               <a class="dropdown-item" 
               [routerLink]="['users', 'articles']" 
               (click)="navbarCollapsed = true">My Articles</a>
@@ -107,14 +123,14 @@
 
               <hr>
 
-              <a class="dropdown-item" 
+<!--               <a class="dropdown-item" 
               [routerLink]="['users', 'profile']" 
               (click)="navbarCollapsed = true">Profile</a>
 
               <a class="dropdown-item" 
               [routerLink]="['users', 'settings']" 
               (click)="navbarCollapsed = true">Settings</a>
-
+ -->
 
               <a class="dropdown-item" 
               (click)="logout()">Logout</a>

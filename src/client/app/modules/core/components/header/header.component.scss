@@ -18,7 +18,7 @@ $color-nav-border: #e7e7e7;
 
 #navigation .brand-logo {
   height: 48px;
-  width: 48px;
+  width: 128px;
   // height: 100%;
   // width: auto;
 }
@@ -27,6 +27,11 @@ $color-nav-border: #e7e7e7;
   height: 100%;
   width: auto;
   display: inline-block;
+}
+
+#navigation li {
+  padding-right: 4px;
+  padding-left: 12px;
 }
 
 .navbar-collapse {

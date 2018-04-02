@@ -2,10 +2,25 @@
 
 <div>
 
-	<div *ngFor="let article of articles" 
+
+	<div class="article-list" *ngFor="let article of articleList.articles" 
 	(click)="onArticleClick(article)">
-		{{article.title}}
-		{{article.subtitle}}
+
+	<div class="article-container">
+
+		<div class="article-header">
+			{{article.title}} --
+			{{article.subtitle}} --
+			{{article.user.displayName}} - {{article.created}} --
+			{{article.tags | json}}
+		</div>
+
 	</div>
 
+<!-- 	<div class="pagination">
+		<ngb-pagination [collectionSize]="articleList.articleCount" [(page)]="articleList.page" [maxSize]="articleList.pageCount" [rotate]="true" [boundaryLinks]="true" (pageChange)="onPageChange($event)">
+		</ngb-pagination>
+
+	</div>
+ -->
 </div>

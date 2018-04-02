@@ -1,9 +1,6 @@
 <div class="content-container form-container login-container">
 	
-	<form 
-		class="form-horizontal"
-		#createArticleForm="ngForm" 
-		(submit)="onSubmit(createArticleForm)">
+	<form class="form-horizontal" #form="ngForm" (submit)="submitArticle(form)">
 
 		<fieldset>
 			<legend>Create Article</legend>
@@ -23,16 +20,29 @@
 				<input type="text" class="form-control" name="url" placeholder="url" ngModel>
 			</div>
 
-			<button type="submit" class="btn btn-success">Pull</button>
+			<div class="form-group">
+                <tag-input
+                    [theme]="'bootstrap'"
+                    class="form-control"
+                    name="tags" ngModel>
+                </tag-input>
+
+			</div>
+
+			<button type="button" class="btn btn-info" (click)="previewArticle(form)">Preview</button>
+			
+			<button type="submit" class="btn btn-success">Create</button>
 
 		</fieldset>
 
 	</form>
 </div>
 
+<div *ngIf="article"  class="article-preview">
+	<p>Preview</p>
 
-<p>RENDERED</p>
+	<app-article [article]="article"></app-article>
+</div>
 
-<app-article *ngIf="article" [article]="article"></app-article>
 
 

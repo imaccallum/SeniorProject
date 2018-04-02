@@ -4,20 +4,22 @@ import { FormsModule } from '@angular/forms';
 
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { MyArticlesComponent } from './components/my-articles/my-articles.component';
 import { EditArticleComponent } from './components/edit-article/edit-article.component';
 import { CreateArticleComponent } from './components/create-article/create-article.component';
 
 
 import { SharedModule } from '@shared/shared.module'
 
+import { TagInputModule } from 'ngx-chips';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    TagInputModule
   ],
-  declarations: [ProfileComponent, SettingsComponent, MyArticlesComponent, EditArticleComponent, CreateArticleComponent],
-  exports: [ProfileComponent, SettingsComponent, MyArticlesComponent, EditArticleComponent, CreateArticleComponent]
+  declarations: [ProfileComponent, SettingsComponent, EditArticleComponent, CreateArticleComponent],
+  exports: [ProfileComponent, SettingsComponent, EditArticleComponent, CreateArticleComponent]
 })
 export class UsersModule { }
