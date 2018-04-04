@@ -1,0 +1,11 @@
+<div class="alert-container">
+	
+	<div *ngFor="let alert of alerts" 
+	class="alert {{ classForAlert(alert) }} alert-dismissable">
+			
+		<a class="close" (click)="removeAlert(alert)">&times;</a>
+	  	<h4 class="alert-heading">{{alert.title}}</h4>
+	  	<p>{{alert.message}}</p>
+
+	</div>
+</div>

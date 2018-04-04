@@ -12,7 +12,7 @@ import { ApiService, AuthService, UserService } from '@services/index';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-
+import { AlertModule, AlertService } from './modules/alert'
 import { SharedModule } from './modules/shared/shared.module'
 import { CoreModule } from './modules/core/core.module'
 import { UsersModule } from './modules/users/users.module'
@@ -50,9 +50,10 @@ TagInputModule.withDefaults({
     SharedModule,
     CoreModule,
     UsersModule,
-    ArticlesModule
+    ArticlesModule,
+    AlertModule
   ],
-  providers: [AuthService, ApiService, UserService,
+  providers: [AlertService, AuthService, ApiService, UserService,
     ArticleResolver, ArticleListResolver, MyArticleListResolver
   ],
   bootstrap: [AppComponent]
