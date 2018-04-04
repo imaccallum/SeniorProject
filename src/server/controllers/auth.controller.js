@@ -1,7 +1,7 @@
 import { userRepo, tokenRepo } from '../repo'
 
 
-const extractSchemeAndCredential = (req) => {
+const extractSchemeAndCredential = async (req) => {
 	const { authorization } = req.headers
 
 	if (!authorization) {
@@ -23,9 +23,9 @@ const extractSchemeAndCredential = (req) => {
 	}
 }
 
-const extractBasic = (req) => {
+const extractBasic = async (req) => {
 
-	const { scheme, credential } = extractSchemeAndCredential(req)
+	const { scheme, credential } = await extractSchemeAndCredential(req)
 
 	const credentials = new Buffer(credential, 'base64').toString().split(':');
 
@@ -37,21 +37,21 @@ const extractBasic = (req) => {
 		throw new Error('Invalid credential length')
 	}
 
-	var username = credentials[0];
+	var email = credentials[0];
 	var password = credentials[1];
 	
-	if (!username || !password) {
+	if (!email || !password) {
 		throw new Error('Invalid credentials')
 	}
 
 	return {
-		username: username,
+		email: email,
 		password: password
 	}
 }
 
-const extractBearer = (req) => {
-	const { scheme, credential } = extractSchemeAndCredential(req)
+const extractBearer = async (req) => {
+	const { scheme, credential } = await extractSchemeAndCredential(req)
 
 	console.log(scheme)
 	console.log(credential)
@@ -81,18 +81,19 @@ exports.requiresRegistration = async function (req, res, next) {
 		next()
 
 	} catch (err) {
-		console.log(err)
-		res.json(err)
+		next(err)
 	}
 }
 
 exports.requiresLogin = async function (req, res, next) {
 
 	try {
-		const { username, password } = extractBasic(req)
 
-		const user = await userRepo.getByBasic(username, password)
-
+		console.log('A')
+		const { email, password } = await extractBasic(req)
+		console.log('B')
+		const user = await userRepo.getByBasic(email, password)
+		console.log('C')
 		const token = tokenRepo.generate(user.id)
 
 		req.user = user
@@ -101,18 +102,17 @@ exports.requiresLogin = async function (req, res, next) {
 		next()
 
 	} catch (err) {
+		console.log('LOGIN ERROR')
+		console.log(err)
 		next(err)
 	}
-
-
-
 }
 
 exports.requiresBearer = async function (req, res, next) {
 
 	try {
 
-		const { accessToken } = extractBearer(req)
+		const { accessToken } = await extractBearer(req)
 
 		const token = tokenRepo.extract(accessToken)
 

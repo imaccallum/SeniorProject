@@ -66,15 +66,23 @@ exports.getForUser = async function (user) {
 };
 
 
-exports.update = async function (article, body) {
+exports.update = async function (id, body) {
 
-	article.title = body.title;
-	article.content = body.content;
+	const article = await Article.findOneAndUpdate({ _id: id }, body, { upsert: true })
+
+	return article
+};
+
+exports.create = async function (body, user)  {
+
+	var article = new Article(body);
+	article.user = user._id;
 
 	await article.save()
 
 	return article
-};
+}
+
 
 
 exports.delete = async function (article) {

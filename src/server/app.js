@@ -23,28 +23,32 @@ app.use((req, res, next) => {
 })
 
 
-app.use(expressWinston.logger({
-  transports: [
-    new winston.transports.Console({
-      json: true,
-      colorize: true
-    })
-  ]
-}))
+// app.use(expressWinston.logger({
+//   transports: [
+//     new winston.transports.Console({
+//       json: true,
+//       colorize: true
+//     })
+//   ]
+// }))
 
 // Now we can tell the app to use our routing code:
 app.use(router)
 
 
 // express-winston errorLogger makes sense AFTER the router.
-app.use(expressWinston.errorLogger({
-  transports: [
-    new winston.transports.Console({
-      json: true,
-      colorize: true
-    })
-  ]
-}));
+// app.use(expressWinston.errorLogger({
+//   transports: [
+//     new winston.transports.Console({
+//       json: true,
+//       colorize: true
+//     })
+//   ]
+// }));
+
+
+
+
 
 
 

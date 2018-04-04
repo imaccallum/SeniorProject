@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ArticleComponent } from './article/article.component';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 
+
 @NgModule({
   imports: [
     CommonModule

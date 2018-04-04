@@ -8,9 +8,9 @@ const { requiresRegistration, requiresLogin, requiresBearer, token, renderUrl, m
 
 const router = express.Router();
 
-router.route('/auth/signup').post(requiresRegistration, token);
-router.route('/auth/login').post(requiresLogin, token);
-router.route('/auth/me').get(requiresBearer, me);
+router.post('/auth/signup', requiresRegistration, token);
+router.post('/auth/login', requiresLogin, token);
+router.get('/auth/me', requiresBearer, me);
 
 
 router.post('/articles/preview', articles.createPreview);
@@ -24,36 +24,31 @@ router.put('/articles/:articleId', requiresBearer, articles.requiresArticleAutho
 router.get('/articles/:articleId/me', requiresBearer, articles.requiresArticleAuthor, articles.get)
 router.get('/articles/:articleId', articles.get)
 
+router.use((req, res, next) => {
+  console.log('CATCHALL')
+  const err = new Error('Not found')
+  err.code = 404
 
-// router.get('/articles/:articleId/tags', articles.listTagsForArticle)
-// router.post('/articles/:articleId/tags/:tagId', articles.requiresArticleAuthor, articles.addTagToArticle)
-// router.del('/articles/:articleId/tags/:tagId', articles.requiresArticleAuthor, articles.removeTagFromArticle)
+  next(err)
+})
 
-// // MARK: Articles
 
-// // Articles collection routes
-// router.route('/api/articles')
-// 	.all(articlesPolicy.isAllowed) 
-//   .get(articles.list)
-//   .post(articles.create);
+router.use((err, req, res, next) => {
 
-// router.route('/api/articles/me')
-// 	.all(articlesPolicy.isAllowed)
-// 	.get(articles.myArticles)
+  console.log('FORMATTING ERROR')
 
-// router.route('/api/articles/md')
-// 	.all(articlesPolicy.isAllowed)
-//   .post(articles.pullMarkdownFromUrl)
+    console.log(err)
 
-// // Single article routes
-// router.route('/api/articles/:articleId')
-// 	.all(articlesPolicy.isAllowed)
-//   .get(articles.read)
-//   .put(articles.update)
-//   .delete(articles.delete);
+    console.log(err.message)
 
-// // Finish by binding the article middleware
-// router.param('articleId', articles.articleByID);
+   const error = {
+   	code: err.code || 400,
+   	message: err.message
+   }
+
+  res.status(error.code).json(error)
+})
+
 
 
 module.exports = router
