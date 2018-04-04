@@ -15,6 +15,11 @@
 			{{article.user.displayName}} on {{article.created | date:'longDate'}}
 			<span class="article-tags" *ngFor="let tags of article['tags']"> {{tags}}</span>
 			</div>
+
+			<a *ngIf="user?.id == article?.user?.id" 
+			(click)="onEditArticleClick($event, article)"
+			class="btn btn-secondary">edit</a>
+
 		</div>
 
 	</div>

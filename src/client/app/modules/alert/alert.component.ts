@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Alert, AlertType } from './alert';
-import { AlertService } from './alert.service';
+import { AlertService } from '@services/alert.service';
  
 
 @Component({
@@ -13,7 +13,8 @@ export class AlertComponent implements OnInit {
 
     alerts: Alert[] = [];
  
-    constructor(private alertService: AlertService) { }
+    constructor(
+	private alertService: AlertService) { }
  
     ngOnInit() {
 		console.log('SUBSCRIBING TO ALERTS')

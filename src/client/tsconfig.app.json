@@ -10,6 +10,7 @@
       "@environment/*": ["environment/*"],
       "@guards/*": ["app/guards/*"],
       "@models/*": ["app/models/*"],
+      "@modules/*": ["app/modules/*"],
       "@resolvers/*": ["app/resolvers/*"],
       "@services/*": ["app/services/*"],
       "@pipes/*": ["app/pipes/*"]

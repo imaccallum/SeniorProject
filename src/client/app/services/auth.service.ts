@@ -27,8 +27,10 @@ export class AuthService {
   
   setToken(token?: string) {
     console.log(`SAVING TOKEN: ${token}`)
-    localStorage.setItem(this.storageKey, token);
-    this.tokenSubject.next(token)
+    if (token) {
+      localStorage.setItem(this.storageKey, token);
+      this.tokenSubject.next(token)
+    }
   }
 
   getToken(): string | null {

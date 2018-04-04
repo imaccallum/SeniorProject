@@ -7,7 +7,31 @@ import { articleRepo } from '../repo'
 
 exports.requiresArticleAuthor = async function (req, res, next) {
 
-  next()
+  try {
+
+    const { articleId } = req.params
+
+    if (!articleId) {
+      throw new Error('Must provide an article id')
+    }
+
+    const article = await articleRepo.get(articleId)
+
+    const user = req.user
+
+    if (!user) {
+      throw new Error('Must provide a user')
+    }
+
+    if (article.user.id !== user.id) {
+      throw new Error('Must be the author to edit an article')
+    }
+
+    next()
+
+  } catch (err) {
+    next(err)
+  }
 }
 
 
@@ -93,7 +117,32 @@ exports.get = async function (req, res, next) {
 /**
  * Update an article
  */
-exports.update = function (req, res) {
+exports.update = async function (req, res, next) {
+
+  console.log('UPDATING ARTICLE')
+
+    try {
+
+    const { body, params } = req
+    const { title, subtitle, url, tags } = body
+    const { articleId } = params
+
+    const articleBody = await articleRepo.createPreview({
+      title: title,
+      subtitle: subtitle,
+      url: url,
+      tags: tags
+    })
+
+    const article = await articleRepo.update(articleId, articleBody)
+
+    res.json(article)
+
+  } catch (err) {
+    console.log(err)
+    next(err)
+  }
+
 };
 
 /**

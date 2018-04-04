@@ -7,12 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router'
 
-import { ApiService, AuthService, UserService } from '@services/index';
+import { ApiService, AuthService, UserService, AlertService } from '@services/index';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { AlertModule, AlertService } from './modules/alert'
+import { AlertComponent } from './modules/alert/alert.component'
+
 import { SharedModule } from './modules/shared/shared.module'
 import { CoreModule } from './modules/core/core.module'
 import { UsersModule } from './modules/users/users.module'
@@ -37,6 +38,7 @@ TagInputModule.withDefaults({
 @NgModule({
   declarations: [
     AppComponent,
+    AlertComponent
   ],
   imports: [
     TagInputModule,
@@ -50,12 +52,12 @@ TagInputModule.withDefaults({
     SharedModule,
     CoreModule,
     UsersModule,
-    ArticlesModule,
-    AlertModule
+    ArticlesModule
   ],
   providers: [AlertService, AuthService, ApiService, UserService,
     ArticleResolver, ArticleListResolver, MyArticleListResolver
   ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -3,7 +3,7 @@ import { Router, NavigationStart } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
  
-import { Alert, AlertType } from './alert';
+import { Alert, AlertType } from '../modules/alert/alert';
 
 @Injectable()
 export class AlertService {

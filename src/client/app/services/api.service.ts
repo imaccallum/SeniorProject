@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Request, RequestOptions, RequestMethod, Response } from '@angular/http';
-import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 
 import { AuthService } from './auth.service';
-import { AlertService } from '../modules/alert'
+import { AlertService } from './alert.service'
 
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError } from 'rxjs/operators/catchError';
@@ -24,7 +24,10 @@ export class ApiService {
 
   private baseUrl = environment.apiUrl;
 
-  constructor(private http: Http, private auth: AuthService, private alert: AlertService) { }
+  constructor(
+    private http: Http, 
+    private auth: AuthService, 
+    private alert: AlertService) { }
 
   get<T>(url: string, options: any = {}): Observable<T> {
     return this.request<T>(url, RequestMethod.Get, null, options);
@@ -81,28 +84,45 @@ export class ApiService {
     const request = new Request(requestOptions);
 
     return this.http.request(request)
-      // .catch((res: Response) => this.onRequestError(res));
       .map((res: Response) => {
         console.log('RESPONSE')
         console.log(res)
         return res.json() as T
       })
+      .catch(err => this.onRequestError(err))
   }
 
-  onRequestError(res: Response) {
-    const statusCode = res.status;
-    const body = res.json();
+  onRequestError(err: Response) {
+    console.log('CATCH ERROR')
 
-    const error = {
-      statusCode: statusCode,
-      error: body.error
-    };
+    let body = err.json();
+    let errorMessage = null;
 
-    console.log(error);
+    if (body) {
+      errorMessage = body.message
+    } else {
 
-    this.alert.error('Error', error.error)
+      console.log(err)
+      errorMessage = `Server returned code: ${err.status}, error message is: ${err}`
+    }
 
-    return Observable.throw(error);
+    if (errorMessage) {
+      console.log(errorMessage)
+      console.log(this.alert)
+      this.alert.error('Error', errorMessage)
+    }
+
+    return Observable.throw(errorMessage);
+
+
+    // console.log(err)
+
+
+    // const error = err.error
+
+
+
+    // return Observable.throw(errorMessage);
   }
 
 }

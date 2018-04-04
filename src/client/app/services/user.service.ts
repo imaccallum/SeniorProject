@@ -81,6 +81,11 @@ export class UserService {
     return this.api.post<Article>('articles', payload)
   }
   
+  updateArticle(id: string, title: string, subtitle: string, url: string, tags: string[]): Observable<Article> {
+    const payload = { title, subtitle, url, tags }
+    return this.api.put<Article>(`articles/${id}`, payload)
+  }
+  
   previewArticle(title: string, subtitle: string, url: string, tags: string[]): Observable<Article> {
     const payload = { title, subtitle, url, tags }
     return this.api.post<Article>('articles/preview', payload)

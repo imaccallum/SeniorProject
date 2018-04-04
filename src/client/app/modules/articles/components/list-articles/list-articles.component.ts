@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 
-import { Article, ArticleList } from '@models/index'
+import { Article, ArticleList, User } from '@models/index'
 import { UserService } from '@services/index'
 
 @Component({
@@ -11,7 +11,8 @@ import { UserService } from '@services/index'
 })
 export class ListArticlesComponent implements OnInit {
 
-	articleList?: ArticleList
+	articleList?: ArticleList;
+  user?: User;
 
   constructor(
   	private router: Router,
@@ -20,6 +21,7 @@ export class ListArticlesComponent implements OnInit {
 
   ngOnInit() {
     this.articleList = this.route.snapshot.data['articleList'];
+    this.user = this.userService.getUser()
 
     this.route.paramMap.subscribe(params => {
       console.log('PARAMS')
@@ -35,6 +37,11 @@ export class ListArticlesComponent implements OnInit {
       this.userService.fetchArticles(page, search).subscribe(result => {
           this.articleList = result
        })
+
+
+    this.userService.userObservable.subscribe(user => {
+        this.user = user
+    })
     })
 
   }
@@ -44,6 +51,11 @@ export class ListArticlesComponent implements OnInit {
 		console.log(article)
 		this.router.navigate(['/', 'articles', article.id])
 	}
+
+  onEditArticleClick(event, article: Article) {
+    event.stopPropagation();
+    this.router.navigate(['/', 'users', 'articles', article.id])
+  }
 
   onPageChange(page) {
 

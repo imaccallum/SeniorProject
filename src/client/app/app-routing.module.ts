@@ -55,12 +55,18 @@ const routes: Routes = [
 	 { 
 		path: 'users',
 		children: [
-			{ path: '', redirectTo: 'profile', pathMatch: 'full' },
-			{ path: 'profile', component: ProfileComponent },
-			{ path: 'settings', component: SettingsComponent },
+			{ path: '', redirectTo: 'home', pathMatch: 'full' },
 			{ path: 'articles/create', component: CreateArticleComponent },
-			{ path: 'articles/:articleId', component: EditArticleComponent },
-			{ path: 'articles', component: ListArticlesComponent, resolve: { articleList: MyArticleListResolver } }
+			{ 
+				path: 'articles/:articleId', 
+				component: EditArticleComponent,
+				resolve: { article: ArticleResolver } 
+			},
+			{ 
+				path: 'articles', 
+				component: ListArticlesComponent, 
+				resolve: { articleList: MyArticleListResolver } 
+			}
 		]
 	 }
 ];
