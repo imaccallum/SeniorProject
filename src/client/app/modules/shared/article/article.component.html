@@ -1,13 +1,11 @@
 <div class="article-container">
 
 	<div class="article-header">
-		<h1>{{article.title}}</h1>
-		<h3>{{article.subtitle}}</h3>
-		<h5>{{article.user.displayName}} - {{article.created}}</h5>
-		
-		<div *ngIf="article.tags">
-			{{article.tags | json}}
-		</div>
+		<h2>{{article.title}}</h2>
+		<h6>{{article.subtitle}}</h6>
+		<div>by {{article.user.displayName}} on {{article.created | date:'longDate'}} </div>
+		<span class="article-tags" *ngFor="let tags of article['tags']"> {{tags}}</span> 
+
 
 	</div>
 
