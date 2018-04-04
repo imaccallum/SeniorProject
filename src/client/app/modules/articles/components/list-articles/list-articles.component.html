@@ -2,21 +2,22 @@
 
 <div>
 
-
-	<div class="article-list" *ngFor="let article of articleList.articles" 
-	(click)="onArticleClick(article)">
+	<div class="article-list" *ngFor="let article of articleList.articles; let i = index" [attr.data-index]="i"
+	(click)="onArticleClick(article)" style="cursor: hand;cursor: pointer;">
 
 	<div class="article-container">
 
 		<div class="article-header">
-			{{article.title}} --
-			{{article.subtitle}} --
-			{{article.user.displayName}} - {{article.created}} --
-			{{article.tags | json}}
+			{{i+1}}.
+			{{article.title}}
+			<div class="article-subitems" >
+			{{article.subtitle}} by
+			{{article.user.displayName}} on {{article.created | date:'longDate'}}
+			<span class="article-tags" *ngFor="let tags of article['tags']"> {{tags}}</span>
+			</div>
 		</div>
 
 	</div>
-
 <!-- 	<div class="pagination">
 		<ngb-pagination [collectionSize]="articleList.articleCount" [(page)]="articleList.page" [maxSize]="articleList.pageCount" [rotate]="true" [boundaryLinks]="true" (pageChange)="onPageChange($event)">
 		</ngb-pagination>
