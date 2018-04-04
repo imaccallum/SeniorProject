@@ -7,8 +7,9 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
-import { AuthService } from './auth.service';
 
+import { AuthService } from './auth.service';
+import { AlertService } from '../modules/alert'
 
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError } from 'rxjs/operators/catchError';
@@ -23,7 +24,7 @@ export class ApiService {
 
   private baseUrl = environment.apiUrl;
 
-  constructor(private http: Http, private auth: AuthService) { }
+  constructor(private http: Http, private auth: AuthService, private alert: AlertService) { }
 
   get<T>(url: string, options: any = {}): Observable<T> {
     return this.request<T>(url, RequestMethod.Get, null, options);
@@ -98,6 +99,8 @@ export class ApiService {
     };
 
     console.log(error);
+
+    this.alert.error('Error', error.error)
 
     return Observable.throw(error);
   }

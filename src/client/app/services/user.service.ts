@@ -31,9 +31,6 @@ export class UserService {
      )
   }
 
-
-
-
   fetchUser() {
     this.api.get<User>('auth/me').subscribe(next => {
         this.userSubject.next(next)
