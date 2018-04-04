@@ -14,7 +14,7 @@ export class AuthService {
   storageKey: string = 'com.senior-project.auth.token';
 
   private tokenSubject = new BehaviorSubject<string>(null);
-  public tokenObservable = this.tokenSubject.asObservable().pipe(distinctUntilChanged());
+  public tokenObservable = this.tokenSubject.asObservable();
 
   constructor(private router: Router) { }
 

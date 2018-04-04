@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 
 import { ApiService } from './api.service'
 import { AuthService } from './auth.service'
+
 import { User, UserBuilder, Article, ArticleList, Authentication } from '@models/index'
 
 
@@ -24,17 +25,25 @@ export class UserService {
   	private router: Router) {}
 
   ngOnInit() {
+
     this.auth.tokenObservable.subscribe(
       data => this.fetchUser()
      )
   }
 
 
+
+
   fetchUser() {
-    this.api.get<User>('auth/me').subscribe(data => {
-      this.userSubject.next(data)
-   });
+    this.api.get<User>('auth/me').subscribe(next => {
+        this.userSubject.next(next)
+         
+      }, err => {
+        this.userSubject.next(null)
+      })
+
   }
+
 
   getUser(): User {
     return this.userSubject.getValue()

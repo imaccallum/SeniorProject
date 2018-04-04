@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,6 +24,8 @@ import { MyArticleListResolver } from './resolvers/my.article.list.resolver'
 
 
 import { TagInputModule } from 'ngx-chips';
+
+
 
 TagInputModule.withDefaults({
     tagInput: {
@@ -50,7 +52,7 @@ TagInputModule.withDefaults({
     UsersModule,
     ArticlesModule
   ],
-  providers: [ApiService, AuthService, UserService,
+  providers: [AuthService, ApiService, UserService,
     ArticleResolver, ArticleListResolver, MyArticleListResolver
   ],
   bootstrap: [AppComponent]
