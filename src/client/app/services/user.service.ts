@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do'
 
 import { ApiService } from './api.service'
 import { AuthService } from './auth.service'
@@ -32,7 +33,12 @@ export class UserService {
   }
 
   fetchUser() {
-    this.api.get<User>('auth/me').subscribe(next => {
+
+    const options = {
+      defaultValue: null
+    }
+
+    this.api.get<User>('auth/me', options).subscribe(next => {
         this.userSubject.next(next)
          
       }, err => {
@@ -53,22 +59,24 @@ export class UserService {
     const headers = { "Authorization": "Basic " + auth }
     const options = { additionalHeaders: headers }
 
-    this.api.post<Authentication>('auth/login', payload, options)
-      .subscribe(data => {
-        this.auth.setToken(data.token);
-        this.userSubject.next(data.user)
-        this.router.navigate([redirect || '/home']);
+    return this.api.post<Authentication>('auth/login', payload, options)
+      .do(data => {
+        if (data) {
+          this.auth.setToken(data.token);
+          this.userSubject.next(data.user)
+        }
       });
   }
 
-  signup(payload: UserBuilder, redirect?: string) {
+  signup(payload: UserBuilder) {
 
-  	this.api.post<Authentication>('auth/signup', payload)
-      .subscribe(data => {
+  	return this.api.post<Authentication>('auth/signup', payload)
+      .do(data => {
+        if (data) {
         this.auth.setToken(data.token);
         this.userSubject.next(data.user)
-        this.router.navigate([redirect || '/home']);
-      });
+        }
+     });
   }
 
   logout() {

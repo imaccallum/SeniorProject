@@ -7,6 +7,7 @@
     "types": [],
     "paths": {
       "@shared/*": ["app/modules/shared/*"],
+      "@utils/*": ["app/utils/*"],
       "@environment/*": ["environment/*"],
       "@guards/*": ["app/guards/*"],
       "@models/*": ["app/models/*"],

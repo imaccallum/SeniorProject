@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
+
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -8,6 +8,8 @@ import 'rxjs/add/observable/of';
 
 import { Article } from '@models/index'
 import { UserService, AlertService } from '@services/index'
+import { PasswordValidator, DateValidator } from '@utils/validator/index'
+
 
 @Component({
   selector: 'app-edit-article',
@@ -25,6 +27,9 @@ export class EditArticleComponent implements OnInit {
   url: FormControl;
   tags: FormControl;
 
+  urlPattern = /^((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
+
+
   constructor(
   	private route: ActivatedRoute,
   	private router: Router,
@@ -38,7 +43,7 @@ export class EditArticleComponent implements OnInit {
 
     this.title = new FormControl(this.article.title, [Validators.required, Validators.minLength(1)])
     this.subtitle = new FormControl(this.article.subtitle, [Validators.required, Validators.minLength(1)])
-    this.url = new FormControl(this.article.contentUrl, [Validators.required])
+    this.url = new FormControl(this.article.contentUrl, [Validators.required, Validators.pattern(this.urlPattern)])
     this.tags = new FormControl(this.article.tags, [])
 
     this.form = new FormGroup({

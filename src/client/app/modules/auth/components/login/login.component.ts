@@ -19,14 +19,14 @@ export class LoginComponent implements OnInit {
   	private router: Router) { }
 
   ngOnInit() {
-  	if (this.auth.isLoggedIn()) {
-  		this.router.navigate(['/', 'home']);
-  	}
+
   }
 
   onSubmit(form: NgForm) {
     const values = form.value;
     const { username, password } = values
-    this.userService.login(username, password)
+    this.userService.login(username, password).subscribe(data => {
+      this.router.navigate(['/']);
+    })
   }
 }
