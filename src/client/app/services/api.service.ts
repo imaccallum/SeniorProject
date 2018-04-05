@@ -89,11 +89,21 @@ export class ApiService {
         console.log(res)
         return res.json() as T
       })
-      .catch(err => this.onRequestError(err))
+      .catch(err => this.onRequestError(err, options))
   }
 
-  onRequestError(err: Response) {
+  onRequestError(err: Response, options: any = {}) {
     console.log('CATCH ERROR')
+
+    if (options.defaultValue !== undefined) {
+
+      if (options.defaultValue instanceof Function) {
+        const value = options.defaultValue()
+        return Observable.of(value)
+      } else {
+        return Observable.of(options.defaultValue)
+      }
+    }
 
     let body = err.json();
     let errorMessage = null;
@@ -106,7 +116,10 @@ export class ApiService {
       errorMessage = `Server returned code: ${err.status}, error message is: ${err}`
     }
 
-    if (errorMessage) {
+
+    const shouldHandleError = options.globalErrorHandlingEnabled || true
+
+    if (errorMessage && shouldHandleError) {
       console.log(errorMessage)
       console.log(this.alert)
       this.alert.error('Error', errorMessage)
@@ -114,15 +127,6 @@ export class ApiService {
 
     return Observable.throw(errorMessage);
 
-
-    // console.log(err)
-
-
-    // const error = err.error
-
-
-
-    // return Observable.throw(errorMessage);
   }
 
 }

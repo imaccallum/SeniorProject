@@ -1,151 +1,155 @@
 <div class="content-container form-container signup-container">
-  <form 
-  	class="form-horizontal" 
-  	#signupForm="ngForm" 
-  	(submit)="onSubmit(signupForm)">
+    <form novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
+        <fieldset>
+            
+            <legend>Signup</legend>
+            
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="firstNameField">First Name</label>
+                    <input id="firstNameField"
+                    placeholder="First name"
+                    type="text"
+                    class="form-control"
+                    [formControl]="firstName"
+                    [ngClass]="{
+                    'is-valid': firstName.valid && (firstName.dirty || firstName.touched),
+                    'is-invalid': firstName.invalid && (firstName.dirty || firstName.touched)
+                    }">
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback"
+                        *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                        <small class="form-error" *ngIf="firstName.errors.required">First name is required</small>
+                    </div>
+                </div>
+                
+                <div class="form-group col">
+                    
+                    <label for="lastNameField">Last Name</label>
+                    <input id="lastNameField"
+                    placeholder="Last name"
+                    type="text"
+                    class="form-control"
+                    [formControl]="lastName"
+                    [ngClass]="{
+                    'is-valid': lastName.valid && (lastName.dirty || lastName.touched),
+                    'is-invalid': lastName.invalid && (lastName.dirty || lastName.touched)
+                    }">
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback"
+                        *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                        <small class="form-error" *ngIf="lastName.errors.required">Last name is required</small>
+                    </div>
+                    
+                </div>
+            </div>
 
+            <hr>
 
-	<fieldset>
+            <div class="form-row form-group">
+                <label for="emailField">Email</label>
+                <input id="emailField"
+                placeholder="Email address"
+                type="text"
+                class="form-control"
+                [formControl]="email"
+                [ngClass]="{
+                'is-valid': email.valid && (email.dirty || email.touched),
+                'is-invalid': email.invalid && (email.dirty || email.touched)
+                }">
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback"
+                    *ngIf="email.invalid && (email.dirty || email.touched)">
+                    
+                    <small class="form-error"
+                    *ngIf="email.errors.required">
+                    Email address is required</small>
+                    <small class="form-error"
+                    *ngIf="email.errors.pattern">
+                    Invalid email address</small>
+                </div>
+            </div>
+            
+            <div class="form-row form-group">
+                    
+                    <label for="usernameField">Username</label>
+                    <input id="usernameField"
+                    placeholder="Username"
+                    type="text"
+                    class="form-control"
+                    [formControl]="username"
+                    [ngClass]="{
+                    'is-valid': username.valid && (username.dirty || username.touched),
+                    'is-invalid': username.invalid && (username.dirty || username.touched)
+                    }">
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback"
+                        *ngIf="username.invalid && (username.dirty || username.touched)">
+                        <small class="form-error" *ngIf="username.errors.required">Username is required</small>
+                    </div>
+                    
+                </div>
 
-		<legend>Sign Up</legend>
+            
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="passwordField">Password</label>
+                    <input id="passwordField"
+                    placeholder="Password"
+                    type="password"
+                    class="form-control"
+                    [formControl]="password"
+                    [ngClass]="{
+                    'is-valid': password.valid && (password.dirty || password.touched),
+                    'is-invalid': password.invalid && (password.dirty || password.touched)
+                    }">
+                    <div class="valid-feedback"></div>
+                    
+                    <div class="invalid-feedback"
+                        *ngIf="password.invalid && (password.dirty || password.touched)">
+                        
+                        <small class="form-error"
+                        *ngIf="password.errors.required">
+                        First name is required</small>
+                        <small class="form-error"
+                        *ngIf="password.errors.pattern">
+                        10 to 32 characters, at least one uppercase letter, one lowercase letter, one number and one special character</small>
+                    </div>
+                </div>
+                
+                <div class="form-group col">
+                    <label for="passwordConfirmationField">Confirm</label>
+                    <input id="passwordConfirmationField"
+                    placeholder="Confirm password"
+                    type="password"
+                    class="form-control"
+                    [formControl]="passwordConfirmation"
+                    [ngClass]="{
+                    'is-valid': passwordConfirmation.valid && (passwordConfirmation.dirty || passwordConfirmation.touched),
+                    'is-invalid': passwordConfirmation.invalid && (passwordConfirmation.dirty || passwordConfirmation.touched)
+                    }">
+                    <div class="valid-feedback"></div>
+                    
+                    <div class="invalid-feedback"
+                        *ngIf="passwordConfirmation.invalid && (passwordConfirmation.dirty || passwordConfirmation.touched)">
+                        <small class="form-error"
+                        *ngIf="passwordConfirmation.errors.required">
+                        Confirmation is required</small>
+                        <small class="form-error"
+                        *ngIf="passwordConfirmation.errors.matchPassword">
+                        Passwords must match</small>
+                    </div>
+                    
+                </div>
+            </div>
 
-		<div class="form-group">
-			<label>First Name</label>
-			<input type="text" class="form-control" name="firstName" placeholder="First Name" ngModel>
-		</div>
-
-		<div class="form-group">
-			<label>Last Name</label>
-			<input type="text" class="form-control" name="lastName" placeholder="Last Name" ngModel>
-		</div>
-
-		<div class="form-group">
-			<label>Email</label>
-			<input type="email" class="form-control" name="email" placeholder="Email" ngModel>
-		</div>
-
-		<div class="form-group">
-			<label>Username</label>
-			<input type="text" class="form-control" name="username" placeholder="Username" ngModel>
-		</div>
-
-		<div class="form-group">
-			<label>Password</label>
-			<input type="password" class="form-control" name="password" placeholder="Password" ngModel>
-
-			<label>Confirm Password</label>
-			<input type="password" class="form-control" name="passwordConfirmation" ngModel>
-		</div>
-
-		<button type="submit" class="form-control" class="btn btn-success">Sign Up</button>
-
-	</fieldset>
-  
-  </form>
+            <button
+            type="submit"
+            class="btn btn-danger"
+            [disabled]="!form.valid">Signup</button>
+        </fieldset>
+    </form>
+    <hr class="or-divider">
+    
+    <a class="btn btn-success" [routerLink]="['/', 'auth', 'login']">Login</a>
 </div>
-
-
-
-
-<!--
-<div class="content-container form-container">
-
-  <form id="signup-form" method="POST" class="form-horizontal" role="form">
-
-
-
-
-    <fieldset>
-
-      <div class="form-group">
-        <label for="phoneNumber">Phone Number </label>
-        <input required type="text" name="phoneNumber" id="phone" class="form-control phone" placeholder="Phone number"/>
-      </div>
-
-
-      <div class="form-group">
-        <label for="email">Email Address </label>
-        <input class="form-control" required type="text" name="email" id = "email" placeholder="Email address" />
-        <div class="status" id="status"></div>
-      </div>
-
-
-      <div class="form-group">
-        <label for="password">Password </label>
-        <input required name="password" type="password" class="form-control inputpass" placeholder="Password" id="password"/>
-
-        <label for="passwordConfirmation"></label>
-        <input required name="passwordConfirmation" type="password" class="form-control inputpass" placeholder="Confirm Password"  id="passwordConfirmation"/>
-      </div>
-
-      <hr>
-
-
-
-       <div class="form-group">
-        <label for="name">First Name</label>
-        <input id="firstName" name="firstName" type="text" placeholder="First name" class="form-control input-md">
-      </div>
-
-      <div class="form-group">
-        <label for="name">Last Name </label>
-        <input id="lastName" name="lastName" type="text" placeholder="Last name" class="form-control input-md">
-      </div>
-
-
-      <hr>
-
-      {{!-- Birthday --}}
-      <div class="form-group">
-          <label for="birthday">Birthday </label>
-          <input name="birthday" id="birthday" class="datepicker" data-date-format="mm/dd/yyyy">
-      </div>
-
-      {{!-- Gender --}}
-      <div class="form-group">
-
-        <label class="control-label" for="gender">Gender </label>
-
-        <label class="radio-inline" for="gender-0">
-          <input type="radio" name="gender" id="gender-0" value="male" checked="checked">
-          Male
-        </label>
-        <label class="radio-inline" for="gender-1">
-          <input type="radio" name="gender" id="gender-1" value="female">
-          Female
-        </label>
-        <label class="radio-inline" for="gender-2">
-          <input type="radio" name="gender" id="gender-2" value="other">
-          Other
-        </label>
-      </div>
-
-
-      <hr>
-
-
-      <div class="form-group">
-        <input type="checkbox" required name="terms" id="field_terms">
-        <small for="terms">I agree with the <a href="terms.php" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</small>
-      </div>
-
-
-      <hr>
-
-      <div class="form-group">
-        <button type="submit" class="btn btn-success">Submit</button>
-      </div>
-
-    </fieldset>
-
-  </form>
-
-
-  <hr class="or-divider">
-
-  <a class="btn btn-block btn-social btn-facebook" href="login/facebook">
-    <span class="fa fa-facebook"></span> Login with Facebook
-  </a>
-
-</div>
- -->

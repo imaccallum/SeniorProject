@@ -1,48 +1,97 @@
 <div class="content-container form-container login-container">
-	
-	<form class="form-horizontal" #form="ngForm" (submit)="submitArticle(form)">
 
-		<fieldset>
+<form novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
+        <fieldset>
+            
 			<legend>Create Article</legend>
+            
+            <div class="form-row form-group">
+                <label>Title</label>
+                <input
+                placeholder="Title"
+                type="text"
+                class="form-control"
+                [formControl]="title"
+                [ngClass]="{
+                'is-valid': title.valid && (title.dirty || title.touched),
+                'is-invalid': title.invalid && (title.dirty || title.touched)
+                }">
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback"
+                    *ngIf="title.invalid && (title.dirty || title.touched)">
+                    <small class="form-error" *ngIf="title.errors.required">Title name is required</small>
+                </div>
 
-			<div class="form-group">
-				<label>Title</label>
-				<input type="text" class="form-control" name="title" placeholder="title" ngModel>
-			</div>
+            </div>
 
-			<div class="form-group">
-				<label>Subtitle</label>
-				<input type="text" class="form-control" name="subtitle" placeholder="subtitle" ngModel>
-			</div>
+            <div class="form-row">
+                <label>Subtitle</label>
+                <input
+                placeholder="Subtitle"
+                type="text"
+                class="form-control"
+                [formControl]="subtitle"
+                [ngClass]="{
+                'is-valid': subtitle.valid && (subtitle.dirty || subtitle.touched),
+                'is-invalid': subtitle.invalid && (subtitle.dirty || subtitle.touched)
+                }">
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback"
+                    *ngIf="subtitle.invalid && (subtitle.dirty || subtitle.touched)">
+                    <small class="form-error" *ngIf="subtitle.errors.required">Subtitle is required</small>
+                </div>
+                
+            </div>
 
-			<div class="form-group">
-				<label>URL</label>
-				<input type="text" class="form-control" name="url" placeholder="url" ngModel>
-			</div>
-
-			<div class="form-group">
+            <div class="form-row">
+                <label>Markdown Url</label>
+                <input
+                placeholder="Markdown file URL"
+                type="text"
+                class="form-control"
+                [formControl]="url"
+                [ngClass]="{
+                'is-valid': url.valid && (url.dirty || url.touched),
+                'is-invalid': url.invalid && (url.dirty || url.touched)
+                }">
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback"
+                    *ngIf="url.invalid && (url.dirty || url.touched)">
+                    
+                    <small class="form-error"
+                    *ngIf="url.errors.required">
+                    Url is required</small>
+                    <small class="form-error"
+                    *ngIf="url.errors.pattern">
+                    Enter a url to a valid markdown file</small>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label>Tags</label>
                 <tag-input
                     [theme]="'bootstrap'"
                     class="form-control"
-                    name="tags" ngModel>
+                    name="tags"
+                    [modelAsStrings]="true"
+					[onAdding]="onAdding"
+                    [formControl]="tags">
                 </tag-input>
 
 			</div>
 
-			<button type="button" class="btn btn-info" (click)="previewArticle(form)">Preview</button>
-			
-			<button type="submit" class="btn btn-success">Create</button>
+                <button type="button" class="btn btn-info" (click)="previewArticle()" [disabled]="!form.valid">Preview</button>
+                <button type="submit" class="btn btn-success" [disabled]="!form.valid">Create</button>
 
-		</fieldset>
 
-	</form>
+
+        </fieldset>
+    </form>
+
 </div>
 
-<div *ngIf="article"  class="article-preview">
+<div *ngIf="preview"  class="article-preview">
 	<p>Preview</p>
 
-	<app-article [article]="article"></app-article>
+	<app-article [article]="preview"></app-article>
 </div>
-
-
-

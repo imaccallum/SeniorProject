@@ -5,8 +5,8 @@
             
 			<legend>Create Article</legend>
             
-            <div class="form-row">
-                
+            <div class="form-row form-group">
+                <label>Title</label>
                 <input
                 placeholder="Title"
                 type="text"
@@ -25,7 +25,7 @@
             </div>
 
             <div class="form-row">
-            
+                <label>Subtitle</label>
                 <input
                 placeholder="Subtitle"
                 type="text"
@@ -43,10 +43,8 @@
                 
             </div>
 
-
-
-            <hr>
             <div class="form-row">
+                <label>Markdown Url</label>
                 <input
                 placeholder="Markdown file URL"
                 type="text"
@@ -69,11 +67,8 @@
                 </div>
             </div>
             
-
-            <hr>
-
             <div class="form-row">
-                
+                <label>Tags</label>
                 <tag-input
                     [theme]="'bootstrap'"
                     class="form-control"
@@ -85,10 +80,10 @@
 
 			</div>
 
+                <button type="button" class="btn btn-info" (click)="previewArticle()" [disabled]="!form.valid">Preview</button>
+                <button type="submit" class="btn btn-success" [disabled]="!form.valid">Update</button>
 
 
-    <button type="button" class="btn btn-info" (click)="previewArticle()" [disabled]="!form.valid">Preview</button>
-	<button type="submit" class="btn btn-success" [disabled]="!form.valid">Update</button>
 
         </fieldset>
     </form>
