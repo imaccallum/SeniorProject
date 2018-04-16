@@ -1,43 +1,63 @@
 <section>
-  <div class="jumbotron text-center">
+  <div class="jumbotron text-center" style="background-image: url('assets/img/articles_banner.jpg');background-size:cover;">
     <div class="row">
       <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <img alt="MEAN.JS" class="img-responsive text-center" src="/modules/core/client/img/brand/logo.png" />
+        <!--img alt="" class="img-responsive text-center" src="assets/img/journal.jpg" style="height:100px;width:100px;"/-->
       </div>
     </div>
     <br>
     <div class="row">
-      <p class="lead">
-        Open-Source Full-Stack Solution For MEAN Applications
+      <p class="lead" style="color:#FFFFFF;">
+        A Markdown to HTML Article Conversion Web Application
       </p>
     </div>
     <div class="row">
-      <p>
-        <a class="btn btn-primary btn-lg" href="http://meanjs.org" target="_blank">Learn more</a>
-      </p>
+<!-- open a modal window by clicking button-->
+
+
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#bootstrapModel">Learn More</button>
+<!-- Modal section -->
+<div id="bootstrapModel" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Learn More About DevPub</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+<!-- model body section -->
+      <div class="modal-body">
+        <p style="text-align: left;">DevPub is a web application that converts markdown files into readable HTML articles. Its intended use is to allow developers to write articles quickly and effectively in Markdown using Version Control or uploading options of their choice. Then our platform allows the user to present these articles in a aesthetic and readable way. You just put your Markdown file URL in our appliaction and it converts it to readable HTML </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</div>
     </div>
   </div>
   <div>
-    <h2>Congrats! You've configured and run the sample application.</h2>
-    <p>MEAN.JS is a web application boilerplate, which means you should start changing everything :-)</p>
-    <p>This sample application tracks users and articles.</p>
+    <h2>DevPub: Write in Markdown — Read in HTML</h2>
+    <p>DevPub is a web application that converts Markdown from other URLS to HTML articles</p>
+    <p>Key Features of DevPub Are:</p>
     <ul>
       <li>
-        Click
-        <em>Sign Up</em> to get started.
+        Markdown to HTML Conversions
       </li>
       <li>
-        Configure your app to work with your social accounts, by editing the
-        <em>/config/env/*.js</em> files.
+        Search through articles and learn about topics
       </li>
       <li>
-        Edit your users module.
-      </li>
-      <li>
-        Add new CRUD modules.
-      </li>
-      <li>
-        Have fun...
+        Edit your user and articles
       </li>
     </ul>
   </div>
