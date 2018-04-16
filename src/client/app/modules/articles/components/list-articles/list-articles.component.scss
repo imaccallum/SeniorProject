@@ -16,14 +16,23 @@ color: white; background: darkblue; FONT-FAMILY: lucida-sans, sans-serif; FONT-S
 H6 {
 color: yellow; background: green; FONT-FAMILY: lucida-sans, sans-serif; FONT-SIZE: 10pt; FONT-STYLE: normal; FONT-VARIANT: normal
 }
-.article-header{
-	color: #000000; background: #f7f7ef; padding-top: 5px;  padding-bottom:5px;border-bottom: 2px solid #DCDCDC;
+.articleListPage{
+	min-height:100%;
+}
+.edit-button{
+	color: #0000EE; // e84447
+}
+.article-list-container{
+ color: #000000; background: #f7f7ef; padding-top: 5px;  padding-bottom:5px;border-bottom: 2px solid #DCDCDC;
+}
+.article-text{
+	margin-top:8px;margin-left:20px;margin-right:20px;
 }
 .article-subitems{
 	color: #828282; background: #f7f7ef; margin-left: 18px;
 }
 .article-tags{
-	color: #000000; background: #FFFFFF; margin-right: 6px;
+	border-radius:8px;border:2px solid rgb(232,68,71) ; padding:2px 4px; color: #FFFFFF; background: rgb(232,68,71); margin-right: 6px;
 }
 .background {
 background: #dddddd;}

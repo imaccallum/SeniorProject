@@ -6,6 +6,7 @@
     "baseUrl": "",
     "types": [],
     "paths": {
+      "@node_modules/*": ["../../node_modules/*"],
       "@shared/*": ["app/modules/shared/*"],
       "@utils/*": ["app/utils/*"],
       "@environment/*": ["environment/*"],
