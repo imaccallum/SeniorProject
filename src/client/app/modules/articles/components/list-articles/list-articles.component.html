@@ -1,24 +1,24 @@
 
 
-<div>
+<div class="articleListPage">
 
 	<div class="article-list" *ngFor="let article of articleList.articles; let i = index" [attr.data-index]="i"
 	(click)="onArticleClick(article)" style="cursor: hand;cursor: pointer;">
 
-	<div class="article-container">
+	<div class="article-list-container">
 
-		<div class="article-header">
+		<div class="article-text">
 			{{i+1}}.
 			{{article.title}}
+			<span class="edit-button"><a *ngIf="user?.id == article?.user?.id" 
+			(click)="onEditArticleClick($event, article)"
+			>edit</a></span>
 			<div class="article-subitems" >
 			{{article.subtitle}} by
 			{{article.user.displayName}} on {{article.created | date:'longDate'}}
 			<span class="article-tags" *ngFor="let tags of article['tags']"> {{tags}}</span>
 			</div>
 
-			<a *ngIf="user?.id == article?.user?.id" 
-			(click)="onEditArticleClick($event, article)"
-			class="btn btn-secondary">edit</a>
 
 		</div>
 

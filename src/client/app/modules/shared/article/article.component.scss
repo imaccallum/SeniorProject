@@ -43,8 +43,11 @@
 .article-subitems{
   color: #828282; background: #f7f7ef; margin-left: 18px;
 }
+.nameAndDate{
+  margin-bottom:10px;
+}
 .article-tags{
-  color: #FFF; background: #007bff; margin-right: 6px; padding-right:4px;padding-left:4px;
+  border-radius:8px;border:2px solid rgb(232,68,71) ; padding:2px 4px; color: #FFFFFF; background: rgb(232,68,71); margin-right: 6px;
 }
 .background {
 background: #dddddd;}
